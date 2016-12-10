@@ -22,6 +22,12 @@ public class ForestPlayer : MonoBehaviour {
     public void Walk(){
         source.PlayOneShot((AudioClip)Resources.Load("walk-forest"), 1);
     }
+    public void IShouldGo(){
+        source.PlayOneShot((AudioClip)Resources.Load("go-this-way"), 1);
+    }
+    public void WhoMay() {
+        source.PlayOneShot((AudioClip)Resources.Load("who-may"), 1);
+    }
     // Update is called once per frame
     void Update () {
 		
