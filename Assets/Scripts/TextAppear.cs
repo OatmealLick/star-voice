@@ -33,6 +33,7 @@ public class TextAppear : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (timeToStay);
 		textToDisplay.text = string.Empty;
+        Destroy(this.transform.parent.gameObject);
 	}
 	
 	// Update is called once per frame

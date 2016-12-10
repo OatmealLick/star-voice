@@ -17,10 +17,13 @@ public class ForestPlayer : MonoBehaviour {
         source.Play();
     }
     public void WhereAmI(){
-        source.PlayOneShot((AudioClip)Resources.Load("hallway"), 1);
+        source.PlayOneShot((AudioClip)Resources.Load("where"), 1);
     }
-	// Update is called once per frame
-	void Update () {
+    public void Walk(){
+        source.PlayOneShot((AudioClip)Resources.Load("walk-forest"), 1);
+    }
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
