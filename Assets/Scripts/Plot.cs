@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour {
 	//int plot = 0;
-    private int currentStep = 0;
+    public int currentStep = 0;
     private ForestPlot forestPlot;
 	// Use this for initialization
 	void Start () {
         forestPlot = GetComponent<ForestPlot>();
-        CallPlotStep(++currentStep);
+        Invoke("BeginPlot", 1f);
 	}
+    void BeginPlot(){
+        CallPlotStep(++currentStep);
+    }
 	public void NextStep(int jump=1)
     {
         currentStep = currentStep + jump;
@@ -27,6 +30,9 @@ public class Plot : MonoBehaviour {
                 break;
             case 3:
                 forestPlot.Walk();
+                break;
+            case 4:
+                forestPlot.WhoMay();
                 break;
             default:
 

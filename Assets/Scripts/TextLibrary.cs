@@ -15,8 +15,8 @@ public class TextLibrary : MonoBehaviour {
         script.Add("Somewhere deep in the woods a fire is burning."); //4
         script.Add("* A campfire? Who may it be ? *"); //5
         script.Add("You headed out into the darkness. At first you thought your confused mind is playing tricks on you, but then you were sure. There was a campfire somewhere in there."); //6
-        script.Add("You approach the fire. It’s slowly dying down, but you are sure that somebody was here not a long time ago.");
-        script.Add("*Finally some warmth, I was freezing...");
+        script.Add("You approach the fire. It’s slowly dying down, but you are sure that somebody was here not a long time ago."); //7
+        script.Add("*Finally some warmth, I was freezing..."); //8
     }
 	public string GetLine(int numberOfLine)
     {

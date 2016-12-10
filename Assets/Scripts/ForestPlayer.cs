@@ -28,6 +28,10 @@ public class ForestPlayer : MonoBehaviour {
     public void WhoMay() {
         source.PlayOneShot((AudioClip)Resources.Load("who-may"), 1);
     }
+    public void Campfire()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("fire"), 1);
+    }
     // Update is called once per frame
     void Update () {
 		

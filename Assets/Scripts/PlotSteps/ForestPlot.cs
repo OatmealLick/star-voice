@@ -34,7 +34,7 @@ public class ForestPlot : MonoBehaviour {
     }
 
     public void DisplayText(int lineNumber, int readerSpeed){
-        GameObject textParent = Instantiate(defaultText);
+        GameObject textParent = Instantiate(defaultText, new Vector3(0, 0), transform.rotation);
         TextAppear displayText = textParent.GetComponentInChildren<TextAppear>();
         displayText.readerSpeed = readerSpeed;
         textParent.transform.SetParent(renderCanvas.transform, false);
@@ -107,7 +107,9 @@ public class ForestPlot : MonoBehaviour {
 
     public void FireApproach()
     {
-        
+        plotTimer = 10f;
+        forestPlayer.Campfire();
+        DisplayUpperText(7, 20);
     }
 
     //    // Update is called once per frame
