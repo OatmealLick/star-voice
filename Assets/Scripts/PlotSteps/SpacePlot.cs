@@ -10,7 +10,7 @@ public class SpacePlot : MonoBehaviour {
     private Plot plot;
     public AudioSource audioSource;
     ForestPlayer forestPlayer;
-    SpaceshipPlayer spaceShipPlayer;
+    SpaceshipPlayer spaceshipPlayer;
     private GameObject defaultText;
     private GameObject upperText;
     public GameObject scriptManager;
@@ -29,7 +29,7 @@ public class SpacePlot : MonoBehaviour {
         choiceLibrary = scriptManager.GetComponent<ChoiceLibrary>();
     }
     void Start () {
-		
+        spaceshipPlayer = audioSource.GetComponent<SpaceshipPlayer>();
 	}
     public void DisplayText(int lineNumber, int readerSpeed)
     {
@@ -47,6 +47,21 @@ public class SpacePlot : MonoBehaviour {
         textParent.transform.SetParent(renderCanvas.transform, false);
         displayText.SetText(textLibrary.GetLine(lineNumber));
         textParent.transform.SetAsFirstSibling();
+    }
+
+    public void Blood()
+    {
+        plotTimer = 12f;
+        spaceshipPlayer.Blood();
+       // MusicManager.WhereAmI();
+        DisplayText(19, 18);
+        Invoke("DarkCorridor", plotTimer);
+    }
+    public void DarkCorridor()
+    {
+        plotTimer = 10f;
+        DisplayText(20, 20);
+        Invoke("DarkCorridor", plotTimer);
     }
     // Update is called once per frame
     void Update () {

@@ -45,6 +45,9 @@ public class Plot : MonoBehaviour {
             case 7:
                 forestPlot.FightStart();
                 break;
+            case 8:
+                forestPlot.FightStart();
+                break;
             default:
 
                 break;

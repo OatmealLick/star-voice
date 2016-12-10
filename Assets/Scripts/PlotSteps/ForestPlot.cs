@@ -21,6 +21,7 @@ public class ForestPlot : MonoBehaviour {
     public GameObject fightSystem;
     public GameObject bear;
     public GameObject musicManager;
+    public GameObject wood;
 
 	void Awake() {
 		renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -211,7 +212,8 @@ public class ForestPlot : MonoBehaviour {
         bear.transform.SetAsFirstSibling();
         bearImage.transform.SetParent(renderCanvas.transform, false);
         musicManager.GetComponent<MusicManager>().Fight();
-
+        GameObject woodImage = Instantiate(wood);
+        woodImage.transform.SetParent(renderCanvas.transform, false);
         GameObject system = Instantiate(fightSystem);
         system.transform.SetAsFirstSibling();
         FightResultEventListener fightListener = system.GetComponent<FightResultEventListener>();
