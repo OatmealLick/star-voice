@@ -29,6 +29,7 @@ public class ChoicesBehaviour : MonoBehaviour {
 			choices [i] = Instantiate (choice, pos + new Vector3(0, -i*choiceHeightInPixels, 0), transform.rotation);
 			choices [i].transform.SetParent (gameObject.transform, false);
             int g = i;
+            Debug.Log(nextPlotSteps + g);
             choices [i].GetComponent<Button>().onClick.AddListener(() => AdvanceInPlot(nextPlotSteps + g));
 			// TODO set transform and rotation
 			choices [i].GetComponentInChildren<Text>().text=choiceTexts[i];
@@ -36,7 +37,7 @@ public class ChoicesBehaviour : MonoBehaviour {
 	}
     public void AdvanceInPlot(int nextStep)
     {
-        plot.GetComponent<Plot>().NextStep(nextStep);
+        plot.GetComponent<Plot>().NextStep(1, nextStep);
         Destroy(this.gameObject);
     }
 }

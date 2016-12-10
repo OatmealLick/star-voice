@@ -14,9 +14,11 @@ public class Plot : MonoBehaviour {
     void BeginPlot(){
         CallPlotStep(++currentStep);
     }
-	public void NextStep(int jump=1)
+	public void NextStep(int jump=1, int current=-1)
     {
-        currentStep = currentStep + jump;
+        Debug.Log(currentStep);
+        if (current == -1) currentStep = currentStep + 1;
+        else currentStep = current + jump;
         CallPlotStep(currentStep);
     }
     public void CallPlotStep(int stepNumber){
@@ -33,6 +35,12 @@ public class Plot : MonoBehaviour {
                 break;
             case 4:
                 forestPlot.WhoMay();
+                break;
+            case 5:
+                forestPlot.OnceYouSat();
+                break;
+            case 6:
+                forestPlot.GatherWood();
                 break;
             default:
 
