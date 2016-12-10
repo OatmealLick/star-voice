@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour {
 	List<int> plotDecisions = new List<int>();
-	int plot = 0;
+	//int plot = 0;
     private ForestPlot forestPlot;
 	// Use this for initialization
 	void Start () {

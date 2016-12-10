@@ -9,7 +9,7 @@ public class TextAppear : MonoBehaviour {
 	public string stringToDisplay = "Where am I?";
 	public float timeToDisplay = -1;
 	public float timeToStay = 2f;
-	private float readerSpeed = 13;
+	private float readerSpeed = 15;
 	// Use this for initialization
 	void Start () {
 		textToDisplay = gameObject.GetComponent<Text> ();
