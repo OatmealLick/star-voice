@@ -27,6 +27,31 @@ public class TextLibrary : MonoBehaviour {
         script.Add("*Far better... now I can think... *"); //16
         script.Add("Suddenly, you’ve heard a noise. Something is coming your way. Something big."); //17
         script.Add("* God, please, no… What is this? *"); //18
+        script.Add("* Why... Why there is... so much... blood here. Is it... is it.... a knife in my hand? What is this, lying on the floor... A BODY?! I… *");
+        script.Add("A dark corridor, a body of an unknown man lies beneath your feet. You breathe heavily. You feel pain. A faint light shines on your hands, all covered in blood.");
+        script.Add("*What the…");
+        script.Add("-We have a critical situation, I repeat we have a critical situation. Everyone is to check in at the bridge, where proper procedures will be executed.");
+        script.Add("You slowly walk into the corridor. It splits into two ways.");
+        script.Add("You walk through an empty and silent corridor. The sound of your footsteps bounces around the walls making you question if you’re the only one here. ");
+        script.Add("Following the signs you reach the bridge. Hundreds of lights cover the walls, but somehow it still seems too dark for you. When you enter the hall, you see a grand viewport on the opposite side.");
+        script.Add("* Stars… are we… in space?*");
+        script.Add("-Ekhem! ");
+        script.Add("A man is standing in front of a big screen with thousands of symbols.");
+        script.Add("-I don’t know if you are aware, but we are under an ongoing situation. A critical situation.");
+        script.Add("Where are we?! Why I am here? What’s the situation?!");
+        script.Add("A situation is critical and certain procedures must be executed. Thankfully, we’ve got a procedure for every situation in here. Every. Situation");
+        script.Add("But what is it? Who am I? Can you answer me?");
+        script.Add("Answers are not a part of currently executed procedure. It must be finished first.");
+        script.Add("*Is he mad?*");
+        script.Add("*Is there a reason to even talk to him?*");
+        script.Add("*Is there?*");
+        script.Add("*Of course there is a reason to talk with him. I need to know more!");
+        script.Add("Please, tell me what’s happening!");
+        script.Add("ANSWER ME!");
+        script.Add("*He is a human being… Why would I kill him.*");
+        script.Add("");
+        script.Add("");
+        script.Add("");
         script.Add("");
         script.Add("");
 

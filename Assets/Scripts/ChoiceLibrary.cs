@@ -10,6 +10,10 @@ public class ChoiceLibrary : MonoBehaviour {
         script = new ArrayList();
         script.Add(ChoiceMaker(2, new string[] { "Look around carefully.", "Start walking." }));
         script.Add(ChoiceMaker(2, new string[] { "Sit and think.", "Start gathering wood to keep up the fire." }));
+        script.Add(ChoiceMaker(1, new string[] { "Take a branch from the campfire." }));
+        script.Add(ChoiceMaker(2, new string[] { "Hit it.", "Wave the torch." }));
+        script.Add(ChoiceMaker(2, new string[] { "To the bridge.", "To the labs." }));
+
     }
     public string[] ChoiceMaker(int size, string[] choices){
         string[] toReturn = new string[size];
