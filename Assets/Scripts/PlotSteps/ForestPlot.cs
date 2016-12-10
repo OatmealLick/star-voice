@@ -7,7 +7,7 @@ public class ForestPlot : MonoBehaviour {
 
     Canvas renderCanvas;
     private float plotTimer = 0.0f;
-    private int currentStep = 1;
+    //private int currentStep = 1;
 	private Plot plot;
     public AudioSource audioSource;
     ForestPlayer forestPlayer;
@@ -17,7 +17,7 @@ public class ForestPlot : MonoBehaviour {
     public TextLibrary textLibrary;
     public ChoiceLibrary choiceLibrary;
     public GameObject choices;
-    public Image background;
+	public GameObject background;
 
 	void Awake() {
 		renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -46,6 +46,7 @@ public class ForestPlot : MonoBehaviour {
         displayText.readerSpeed = readerSpeed;
         textParent.transform.SetParent(renderCanvas.transform, false);
         displayText.SetText(textLibrary.GetLine(lineNumber));
+		textParent.transform.SetAsFirstSibling ();
     }
     public void ADarkForest(){
         plotTimer = 10f; // how long text will be on screen
@@ -103,10 +104,17 @@ public class ForestPlot : MonoBehaviour {
         forestPlayer.WhoMay();
         DisplayText(5, 20);
         Invoke("FireApproach", plotTimer);
+		Invoke ("ShowCampfire", 3f);
     }
+
+	private void ShowCampfire() {
+		GameObject bg = Instantiate (background);
+		bg.transform.SetParent (renderCanvas.transform, false);
+	}
 
     public void FireApproach()
     {
+		
         plotTimer = 10f;
         forestPlayer.Campfire();
         DisplayUpperText(7, 20);
