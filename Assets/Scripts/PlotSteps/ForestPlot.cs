@@ -114,12 +114,94 @@ public class ForestPlot : MonoBehaviour {
 
     public void FireApproach()
     {
-		
         plotTimer = 10f;
         forestPlayer.Campfire();
         DisplayUpperText(7, 20);
+        Invoke("FinallySomeWarmth", 10f);
+    }
+    public void FinallySomeWarmth()
+    {
+        plotTimer = 5f;
+        forestPlayer.FinallyWarmth();
+        DisplayUpperText(8, 20);
+        Invoke("SitOrGather", plotTimer);
+    }
+    public void SitOrGather(){
+        ChoicesBehaviour sitOrGather = choices.GetComponent<ChoicesBehaviour>();
+        sitOrGather.choiceTexts = choiceLibrary.GetChoice(1);
+        sitOrGather.nextPlotSteps = 4;
+        GameObject instantiatedChoice = Instantiate(choices);
+        instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
     }
 
+    public void OnceYouSat()
+    {
+        plotTimer = 9f;
+        DisplayUpperText(9, 20);
+        Invoke("ImAllAlone", plotTimer);
+    }
+
+    public void ImAllAlone()
+    {
+        forestPlayer.IAmAlone();
+        plotTimer = 10f;
+        DisplayUpperText(10, 20);
+        Invoke("YouAreImmersed", plotTimer);
+    }
+    public void YouAreImmersed()
+    {
+        plotTimer = 5f;
+        DisplayUpperText(11, 20);
+        Invoke("HowDidI", plotTimer);
+    }
+    public void HowDidI()
+    {
+        forestPlayer.HowTheHell();
+        plotTimer = 10f;
+        DisplayUpperText(12, 20);
+        Invoke("Noise", plotTimer);
+    }
+    public void GatherWood()
+    {
+        plotTimer = 8f;
+        DisplayUpperText(13, 20);
+        Invoke("ItCanWait", plotTimer);
+
+    }
+    public void ItCanWait()
+    {
+        forestPlayer.ItCanWait();
+        plotTimer = 8f;
+        DisplayUpperText(14, 25);
+        Invoke("YouBeginToGather", plotTimer);
+    }   
+    public void YouBeginToGather()
+    {
+        plotTimer = 12f;
+        DisplayUpperText(15, 20);
+        Invoke("FarBetter", plotTimer);
+    }
+    public void FarBetter()
+    {
+        forestPlayer.FarBetter();
+        plotTimer = 10f;
+        DisplayUpperText(16, 20);
+        Invoke("Noise", plotTimer);
+    }
+    public void Noise()
+    {
+        forestPlayer.Scary();
+        plotTimer = 10f;
+        DisplayUpperText(17, 20);
+        Invoke("GodPlease", plotTimer);
+    }
+    public void GodPlease()
+    {
+        forestPlayer.PleaseNo();
+        plotTimer = 10f;
+        DisplayUpperText(18, 20);
+        Invoke("", plotTimer);
+    }
     //    // Update is called once per frame
     //    void Update () {
     //        plotTimer -= Time.deltaTime;

@@ -9,7 +9,7 @@ public class ChoiceLibrary : MonoBehaviour {
     void Start() {
         script = new ArrayList();
         script.Add(ChoiceMaker(2, new string[] { "Look around carefully.", "Start walking." }));
-        
+        script.Add(ChoiceMaker(2, new string[] { "Sit and think.", "Start gathering wood to keep up the fire." }));
     }
     public string[] ChoiceMaker(int size, string[] choices){
         string[] toReturn = new string[size];
