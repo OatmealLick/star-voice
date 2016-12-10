@@ -29,7 +29,7 @@ public class FightInstance : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		renderCanvas = GameObject.Find ("Canvas");
+		renderCanvas = GameObject.Find ("SecondCanvas");
 		timer = Instantiate (timerPrefab, new Vector3(0, 200), Quaternion.identity);
 		button = Instantiate (buttonPrefab, new Vector3(0, -200), Quaternion.identity);
 		timer.transform.SetParent (renderCanvas.transform, false);

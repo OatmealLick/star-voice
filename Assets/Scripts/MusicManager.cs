@@ -9,9 +9,9 @@ public class MusicManager : MonoBehaviour {
     void Start()
     {
         source = GetComponent<AudioSource>();
-        source.clip = (AudioClip)Resources.Load("music");
+        source.clip = (AudioClip)Resources.Load("Forest_music");
         source.loop = true;
-        //source.Play();
+        source.Play();
     }
     public void Fight()
     {
