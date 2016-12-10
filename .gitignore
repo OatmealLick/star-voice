@@ -12,8 +12,6 @@ obj/
 *.svd
 *.userprefs
 /*.csproj
-Assets/*.meta
-Assets/*/*.meta
 *.pidb
 *.suo
 /*.sln
