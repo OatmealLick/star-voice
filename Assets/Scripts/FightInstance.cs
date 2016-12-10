@@ -17,6 +17,9 @@ public class FightInstance : MonoBehaviour
 	private string randomChar;
 	private GameObject renderCanvas;
 
+	private Animator timerAnim;
+	private Animator buttonAnim;
+
 	private bool isFightWon = false;
 
 	const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -31,6 +34,12 @@ public class FightInstance : MonoBehaviour
 		button = Instantiate (buttonPrefab, new Vector3(0, -200), Quaternion.identity);
 		timer.transform.SetParent (renderCanvas.transform, false);
 		button.transform.SetParent (renderCanvas.transform, false);
+
+		timerAnim = timer.GetComponent<Animator> ();
+		buttonAnim = button.GetComponent<Animator> ();
+
+		timerAnim.speed = 3f / time;
+		buttonAnim.speed = 3f / time;
 
 		randomChar = chars[Random.Range (0, chars.Length)].ToString();
 
@@ -55,10 +64,19 @@ public class FightInstance : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown (randomChar.ToLower())) {
-			CancelInvoke ();
-			isFightWon = true;
-			DestroyUIElements ();
+		if(!timerAnim.GetBool("isFailed")) {
+			if (Input.GetKeyDown (randomChar.ToLower ())) {
+				CancelInvoke ();
+				isFightWon = true;
+				DestroyUIElements ();
+			} else if (Input.anyKeyDown) {
+				//timerAnim.Stop ();
+				timerAnim.SetBool ("isFailed", true);
+				buttonAnim.SetBool ("isFailed", true);
+				CancelInvoke ();
+				//DestroyUIElements ();
+				Invoke ("DestroyUIElements", 1f);
+			}
 		}
 	}
 }
