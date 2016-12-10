@@ -16,7 +16,6 @@ public class FightResultEventListener : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log ("asd");
 		FightInstance.FightWon += IncreaseHealth;
 		FightInstance.FightLost += DecreaseHealth;
 	}
@@ -30,13 +29,13 @@ public class FightResultEventListener : MonoBehaviour
 	}
 
 	void DecreaseHealth() {
-		Debug.Log ("asd");
-		health++;
+		Debug.Log ("lost");
+		health--;
 	}
 
 	void IncreaseHealth() {
 		Debug.Log ("won");
-		health--;
+		//health++;
 		// actually why would you get hp for won battle?
 	}
 

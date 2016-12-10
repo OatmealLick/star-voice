@@ -42,12 +42,14 @@ public class FightInstance : MonoBehaviour
 	private void DestroyUIElements() {
 		Destroy (timer);
 		Destroy (button);
-		if (isFightWon)
-			if(FightWon != null)
-				FightWon ();			
-		else
-			if(FightLost != null)
+		if (isFightWon) {
+			if (FightWon != null)
+				FightWon ();
+		} else {
+			if (FightLost != null)
 				FightLost ();
+		}
+		Destroy (gameObject);
 	}
 	
 	// Update is called once per frame
