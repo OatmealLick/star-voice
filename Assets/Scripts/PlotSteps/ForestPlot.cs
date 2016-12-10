@@ -18,6 +18,8 @@ public class ForestPlot : MonoBehaviour {
     public ChoiceLibrary choiceLibrary;
     public GameObject choices;
 	public GameObject background;
+    public GameObject fightSystem;
+    public GameObject bear;
 
 	void Awake() {
 		renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -200,7 +202,14 @@ public class ForestPlot : MonoBehaviour {
         forestPlayer.PleaseNo();
         plotTimer = 10f;
         DisplayUpperText(18, 20);
-        Invoke("", plotTimer);
+        Invoke("FightStart", plotTimer);
+    }
+
+    public void FightStart(){
+        GameObject bearImage = Instantiate(bear);
+        bear.transform.SetAsFirstSibling();
+        bearImage.transform.SetParent(renderCanvas.transform, false);
+        GameObject system = Instantiate(fightSystem);
     }
     //    // Update is called once per frame
     //    void Update () {
