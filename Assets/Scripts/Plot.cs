@@ -42,6 +42,9 @@ public class Plot : MonoBehaviour {
             case 6:
                 forestPlot.GatherWood();
                 break;
+            case 7:
+                forestPlot.FightStart();
+                break;
             default:
 
                 break;

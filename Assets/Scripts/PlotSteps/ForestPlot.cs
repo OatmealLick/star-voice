@@ -20,6 +20,7 @@ public class ForestPlot : MonoBehaviour {
 	public GameObject background;
     public GameObject fightSystem;
     public GameObject bear;
+    public GameObject musicManager;
 
 	void Awake() {
 		renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -209,7 +210,13 @@ public class ForestPlot : MonoBehaviour {
         GameObject bearImage = Instantiate(bear);
         bear.transform.SetAsFirstSibling();
         bearImage.transform.SetParent(renderCanvas.transform, false);
+        musicManager.GetComponent<MusicManager>().Fight();
+
         GameObject system = Instantiate(fightSystem);
+        system.transform.SetAsFirstSibling();
+        FightResultEventListener fightListener = system.GetComponent<FightResultEventListener>();
+
+
     }
     //    // Update is called once per frame
     //    void Update () {

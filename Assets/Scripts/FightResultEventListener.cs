@@ -7,7 +7,7 @@ public class FightResultEventListener : MonoBehaviour
 	public float timeForAttack = 3f;
 	public int attackCount = 3;
 	public float delay = 0f;
-
+    public int hitsToKill = 3;
 	private bool fightInProgress = false;
 	private bool startFight = false;
 	private int fightNumber = 0;
@@ -29,6 +29,12 @@ public class FightResultEventListener : MonoBehaviour
 			InstantiateFight (timeForAttack);
 			fightNumber++;
 		}
+
+        if(health <= attackCount - fightNumber || fightNumber == attackCount){
+            fightInProgress = false;
+            WonTheWholeBattle();
+        }
+
 	}
 
 	void EnableFighting() {
@@ -39,6 +45,11 @@ public class FightResultEventListener : MonoBehaviour
 		Debug.Log ("lost");
 		fightInProgress = false;
 		health--;
+        if (health <= 0)
+        {
+            fightInProgress = false;
+            LostTheWholeBattle();
+        }
 	}
 
 	void IncreaseHealth() {
@@ -59,5 +70,13 @@ public class FightResultEventListener : MonoBehaviour
 			fight.GetComponent<FightInstance> ().time = exactTime;
 		}
 	}
+    void WonTheWholeBattle()
+    {
+        Debug.Log("won everytnignghghgh");
+    }
+    void LostTheWholeBattle()
+    {
+        Debug.Log("lost everytnignghghgh");
+    }
 }
 
