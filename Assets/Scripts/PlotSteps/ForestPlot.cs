@@ -8,7 +8,8 @@ public class ForestPlot : MonoBehaviour {
     private float plotTimer = 0.0f;
     private int currentStep = 1;
 	private Plot plot;
-
+    public AudioSource audioSource;
+    ForestPlayer forestPlayer;
 	private GameObject defaultText;
    
 	void Awake() {
@@ -18,8 +19,9 @@ public class ForestPlot : MonoBehaviour {
 
 	void Start() {
 		plot = GetComponent<Plot> ();
-		//Debug.Log (defaultText);
-	}
+        forestPlayer = audioSource.GetComponent<ForestPlayer>();
+        //Debug.Log (defaultText);
+    }
 
     public void ADarkForest(){
         plotTimer = 10f; // how long text will be on screen
@@ -33,6 +35,7 @@ public class ForestPlot : MonoBehaviour {
 
     public void WhereAmI() {
         plotTimer = 5f;
+        forestPlayer.WhereAmI();
 		GameObject textParent = Instantiate (defaultText);
         TextAppear displayText = textParent.GetComponentInChildren<TextAppear>();
         textParent.transform.SetParent(renderCanvas.transform, false);
