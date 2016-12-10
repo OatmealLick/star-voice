@@ -5,21 +5,22 @@ using UnityEngine;
 
 public class TextAppear : MonoBehaviour {
 
-	private Text text;
+	private Text textToDisplay;
 	public string stringToDisplay = "Where am I?";
 	public float timeToDisplay = -1;
 	public float timeToStay = 2f;
-
 	private float readerSpeed = 13;
 	// Use this for initialization
 	void Start () {
-		text = gameObject.GetComponent<Text> ();
-		StartCoroutine (AnimateText(stringToDisplay));
-
-
-		if (timeToDisplay == -1)
-			timeToDisplay = stringToDisplay.Length / readerSpeed;
+		textToDisplay = gameObject.GetComponent<Text> ();
+        if (timeToDisplay == -1)
+            timeToDisplay = stringToDisplay.Length / readerSpeed;
+        StartCoroutine (AnimateText(stringToDisplay));
 	}
+
+    public void SetText(string text){
+        stringToDisplay = text;
+    }
 
 	IEnumerator AnimateText (string finalString) {
 		float waitSec = timeToDisplay / stringToDisplay.Length;
@@ -27,12 +28,11 @@ public class TextAppear : MonoBehaviour {
 		string str = string.Empty;
 		while(i < stringToDisplay.Length){
 			str += stringToDisplay[i++];
-			text.text = str;
+			textToDisplay.text = str;
 			yield return new WaitForSeconds(waitSec);
-
 		}
 		yield return new WaitForSeconds (timeToStay);
-		text.text = string.Empty;
+		textToDisplay.text = string.Empty;
 	}
 	
 	// Update is called once per frame
