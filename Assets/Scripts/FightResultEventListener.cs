@@ -8,6 +8,8 @@ public class FightResultEventListener : MonoBehaviour
 	public int attackCount = 3;
 	public float delay = 0f;
     public int hitsToKill = 3;
+	public float delaySingleFightInstance = 3.5837237f;
+
 	private bool fightInProgress = false;
 	private bool startFight = false;
 	private int fightNumber = 0;
@@ -26,11 +28,12 @@ public class FightResultEventListener : MonoBehaviour
 	void Update () {
 		if (startFight==true && !fightInProgress && fightNumber<attackCount) {
 			fightInProgress = true;
-			InstantiateFight (timeForAttack);
+			StartCoroutine(DelayInstantiateFight(timeForAttack, delaySingleFightInstance));
+			//InstantiateFight (timeForAttack);
 			fightNumber++;
 		}
 
-        if(health <= attackCount - fightNumber || fightNumber == attackCount){
+		if(fightInProgress==true && (health <= attackCount - fightNumber || fightNumber == attackCount)){
             fightInProgress = false;
             WonTheWholeBattle();
         }
@@ -64,6 +67,12 @@ public class FightResultEventListener : MonoBehaviour
 		FightInstance.FightLost -= DecreaseHealth;
 	}
 
+	IEnumerator DelayInstantiateFight(float exactTime, float delayFight) {
+		yield return new WaitForSeconds (delayFight);
+		InstantiateFight (exactTime);
+
+	}
+
 	void InstantiateFight(float exactTime) {
 		GameObject fight = Instantiate (fightPrefab);
 		if (Mathf.Abs(exactTime - 3f) < 0.001f) {
@@ -72,11 +81,11 @@ public class FightResultEventListener : MonoBehaviour
 	}
     void WonTheWholeBattle()
     {
-        Debug.Log("won everytnignghghgh");
+        Debug.Log("won everything");
     }
     void LostTheWholeBattle()
     {
-        Debug.Log("lost everytnignghghgh");
+        Debug.Log("lost everything");
     }
 }
 
