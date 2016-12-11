@@ -61,6 +61,14 @@ public class ForestPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Scary"), 1);
     }
+    public void Torch()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Torch_attack"), 2);
+    }
+    public void BearAttack()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Bear_attack"), 1);
+    }
     // Update is called once per frame
     void Update () {
 		
