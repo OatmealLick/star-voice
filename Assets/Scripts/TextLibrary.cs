@@ -72,7 +72,13 @@ public class TextLibrary : MonoBehaviour {
         script.Add("No matter how hard you try, you can’t make sense out of the things you are seeing.");//61
         script.Add("*Maybe the labs will give me some answers... *");//62
         script.Add("You headed into the labs.");//63
-        script.Add("");//64
+		script.Add("You run into the cell at the last second and slam the door behind you. You hear him charging at the door head first again and again. Suddenly you hear a crunch and everything goes silent. You feel sick.");//64
+		script.Add("You hear a silent wheeze behind you. You turn around to see a man curled up on the floor. You see extensive wounds all over his body.");//65
+		script.Add ("- It can’t be happening... We were meant to see what’s beyond…");//66
+		script.Add ("Beyond what? What’s going on in here?");//67
+		script.Add ("- We prepared so well, but we never expected this…");//68
+		script.Add ("What are you talking about?");//69
+		script.Add ("-Aah… The sun… I can feel the sun caressing my skin… The waves are taking me away…");//70
 
 
     }

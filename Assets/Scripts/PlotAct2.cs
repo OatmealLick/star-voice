@@ -55,6 +55,9 @@ public class PlotAct2 : Plot
         case 9:
                 spacePlot.WonWithCommander();
                 break;
+		case 10:
+			spacePlot.YouReachTheCell ();
+			break;
         }
         
     }

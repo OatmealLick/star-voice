@@ -89,7 +89,7 @@ public class FightResultEventListenerRunning : MonoBehaviour
 		startFight = false;
 		StopCoroutine (co);
         Debug.Log("won everything");
-		Invoke ("RanAway", 4.5f);
+		Invoke ("RanAway", 2.5f);
     }
     void LostTheWholeBattle()
     {
@@ -110,9 +110,10 @@ public class FightResultEventListenerRunning : MonoBehaviour
 		Destroy (gameObject);
 	}
 
-	void RunAway() {
+	void RanAway() {
 		Debug.Log ("You ran away! - Load Scene here");
 		//SceneManager.LoadScene ("SpaceShip");
+		GameObject.Find("PlotHandler").GetComponent<PlotAct2>().NextStep(1, 9);
 		Destroy (gameObject);
 	}
 }
