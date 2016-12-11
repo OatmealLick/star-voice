@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpacePlot : MonoBehaviour {
-
+	public static bool bridgeVisited = false;
+	public static bool labsVisited = false;
     Canvas renderCanvas;
 	Canvas bgCanvas;
     private float plotTimer = 0.0f;
@@ -117,6 +118,7 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void Bridge() {
+		bridgeVisited = true;
         Destroy(GameObject.Find("Corridor(Clone)"));
         plotTimer = 13f;
 		DisplayText(24, 20);
@@ -325,13 +327,18 @@ public class SpacePlot : MonoBehaviour {
     {
         plotTimer = 12f;
         DisplayText(61, 20);
-        Invoke("MaybeTheLabs", plotTimer);
+		if (!labsVisited)
+			Invoke ("MaybeTheLabs", plotTimer);
+		else {
+			//TODO
+		}
     }
     public void MaybeTheLabs()
     {
         spaceshipPlayer.MaybeTheLabs();
         plotTimer = 5f;
         DisplayText(62, 20);
+
         Invoke("ToTheLabs", plotTimer);
     }
 
@@ -344,6 +351,7 @@ public class SpacePlot : MonoBehaviour {
     }
 
     public void Labs() {
+		labsVisited = true;
         musicManager.GetComponent<MusicManager>().Labs();
 		Destroy(GameObject.Find("Corridor(Clone)"));
 		plotTimer = 16f;
@@ -453,10 +461,37 @@ public class SpacePlot : MonoBehaviour {
     public void TheSun() {
         ShowSun();
         spaceshipPlayer.Dialog2("5");
-        plotTimer = 23f;
-		DisplayText(70, 10);
-		//Invoke ("RunOrFaceHim", plotTimer);
+        plotTimer = 20f;
+		DisplayUpperText(70, 10);
+		Invoke ("HeBreathes", plotTimer);
 	}
+
+	public void HeBreathes() {
+		plotTimer = 23f;
+		DisplayUpperText(71, 10);
+		if (!bridgeVisited) {
+			Invoke ("SpeakerAgain", plotTimer);
+		} else {
+			//TODO end
+		}
+	}
+
+	public void SpeakerAgain() {
+		spaceshipPlayer.Speaker ();
+		plotTimer = 15f;
+		DisplayText(22, 20);
+		Invoke("YouDecide", plotTimer);
+	}
+
+	public void YouDecide() {
+		plotTimer = 9f;
+		DisplayText(72, 22);
+		Invoke("Bridge", plotTimer);
+	}
+
+
+
+
 
 
     // Update is called once per frame
