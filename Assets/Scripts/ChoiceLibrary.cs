@@ -14,7 +14,7 @@ public class ChoiceLibrary : MonoBehaviour {
         script.Add(ChoiceMaker(2, new string[] { "Hit it.", "Wave the torch." }));
         script.Add(ChoiceMaker(2, new string[] { "To the bridge.", "To the labs." }));
 		script.Add(ChoiceMaker(2, new string[] { "There is.", "There is not." }));
-		script.Add(ChoiceMaker(2, new string[] { "Run away from him.", "Face him." }));
+		script.Add(ChoiceMaker(2, new string[] { "Run away from him.", "Run screaming." }));
 
     }
     public string[] ChoiceMaker(int size, string[] choices){

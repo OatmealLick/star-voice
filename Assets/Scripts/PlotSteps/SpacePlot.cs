@@ -273,14 +273,22 @@ public class SpacePlot : MonoBehaviour {
 		DisplayText(45, 20);
 		Invoke ("RunOrFaceHim", plotTimer);
 	}
-
+		
 	public void RunOrFaceHim() {
 		GameObject instantiatedChoice = Instantiate(choices);
 		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
 		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(6);
-		bridgeOrLabs.nextPlotSteps = 1;
+		bridgeOrLabs.nextPlotSteps = 5;
 
 		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
+	}
+
+	public void Run() {
+
+	}
+
+	public void FaceHim() {
+		Run ();
 	}
 
 

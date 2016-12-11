@@ -43,6 +43,12 @@ public class PlotAct2 : Plot
 		case 5:
 			spacePlot.ThereIsNot ();
 			break;
+		case 6:
+			spacePlot.Run ();
+			break;
+		case 7:
+			spacePlot.FaceHim ();
+			break;
             
         }
     }
