@@ -17,8 +17,16 @@ public class MusicManager : MonoBehaviour {
     }
     public void Fight()
     {
+        source.volume = 1f;
         source.clip = (AudioClip)Resources.Load("fight!");
         source.loop = true;
+        source.Play();
+    }
+    public void Bridge()
+    {
+        source.clip = (AudioClip)Resources.Load("Bridge");
+        source.loop = true;
+        source.volume = 0.09f;
         source.Play();
     }
     // Update is called once per frame

@@ -21,6 +21,8 @@ public class SpacePlot : MonoBehaviour {
     public GameObject background;
     public GameObject fightSystem;
     public GameObject bg;
+    public GameObject knife;
+    public GameObject musicManager;
     // Use this for initialization
     void Awake()
     {
@@ -125,12 +127,13 @@ public class SpacePlot : MonoBehaviour {
 	public void FollowingSigns() {
 		plotTimer = 15f;
 		DisplayText(25, 20);
+        musicManager.GetComponent<MusicManager>().Bridge();
 		Invoke ("AreWeInSpace", plotTimer);
 	}
 
 	public void AreWeInSpace() {
 		spaceshipPlayer.Stars ();
-		plotTimer = 8f;
+		plotTimer = 6f;
 		DisplayText(26, 20);
 		Invoke ("Ekhem", plotTimer);
 	}
@@ -154,31 +157,36 @@ public class SpacePlot : MonoBehaviour {
 		corridor.transform.SetParent (bgCanvas.transform, false);
 	}
 	public void IDontKnowIfYoureAware() {
-		plotTimer = 10f;
+        spaceshipPlayer.Dialog("1");
+        plotTimer = 10f;
 		DisplayText (29, 20);
 		Invoke ("WhereAreWe", plotTimer);
     }
 
 	public void WhereAreWe() {
-		plotTimer = 10f;
+        spaceshipPlayer.Dialog("2a");
+        plotTimer = 10f;
 		DisplayText (30, 20);
 		Invoke ("ASituationIsCritical", plotTimer);
 	}
 
 	public void ASituationIsCritical(){
-		plotTimer = 11.4f;
+        spaceshipPlayer.Dialog("3");
+        plotTimer = 11.4f;
 		DisplayText (31, 20);
 		Invoke ("ButWhatIsIt", plotTimer);
 	}
 
 	public void ButWhatIsIt() {
-		plotTimer = 7f;
+        spaceshipPlayer.Dialog("4a");
+        plotTimer = 7f;
 		DisplayText (32, 20);
 		Invoke ("AnswersAreNot", plotTimer);
 	}
 
 	public void AnswersAreNot() {
-		plotTimer = 8.4f;
+        spaceshipPlayer.Dialog("5");
+        plotTimer = 8.4f;
 		DisplayText (33, 20);
 		Invoke ("IsHeMad", plotTimer);
 	}
@@ -206,7 +214,6 @@ public class SpacePlot : MonoBehaviour {
 		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
 		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(5);
 		bridgeOrLabs.nextPlotSteps = 3;
-
 		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
 	}
 
@@ -216,11 +223,26 @@ public class SpacePlot : MonoBehaviour {
 
 	public void ThereIsNot() {
 		Debug.Log ("EUREKA");
+        CommanderFight();
 	}
 
+    public void CommanderFight()
+    {
+        GameObject knifeImage = Instantiate(knife);
+        knifeImage.transform.SetParent(renderCanvas.transform, false);
+        musicManager.GetComponent<MusicManager>().Fight();
+        GameObject system = Instantiate(fightSystem);
+        system.transform.SetAsFirstSibling();
+        FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
+        fightListener.attackCount = 10;
+        fightListener.health = 1;
+        fightListener.delaySingleFightInstance = 2.5f;
+        fightListener.hitsToKill = 5;
+        fightListener.timeForAttack = 1.2f;
+    }
 
 
-	public void Labs() {
+    public void Labs() {
 		Destroy(GameObject.Find("Corridor(Clone)"));
 		plotTimer = 10f;
 		DisplayText(41, 20);
