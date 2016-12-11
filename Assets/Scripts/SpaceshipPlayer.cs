@@ -64,6 +64,22 @@ public class SpaceshipPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Bear_attack"), 1);
     }
+    public void DidIKillHim()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Did_I_kill_him"), 1);
+    }
+    public void Mumble()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Mumble"), 1);
+    }
+    public void WhyDoesItMatter()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Why_does_it_matter"), 1);
+    }
+    public void MaybeTheLabs()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Maby_the_labs"), 1); 
+    }
     // Update is called once per frame
     void Update () {
 		

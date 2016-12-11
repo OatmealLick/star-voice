@@ -233,7 +233,7 @@ public class SpacePlot : MonoBehaviour {
     {
         spaceshipPlayer.HumanBeing();
         plotTimer = 8f;
-        DisplayText(37, 20);
+        DisplayText(40, 20);
         Invoke("CommanderFight", plotTimer);   
     }
     public void CommanderAgain()
@@ -259,8 +259,81 @@ public class SpacePlot : MonoBehaviour {
 
     public void WonWithCommander()
     {
-        plotTimer = 8f;
-        DisplayText(37, 20);
+        spaceshipPlayer.DidIKillHim();
+        musicManager.GetComponent<MusicManager>().Bridge();
+
+        plotTimer = 7f;
+        DisplayText(53, 20);
+        Invoke("PassByTheBody", plotTimer);
+    }
+
+    public void PassByTheBody()
+    {
+        plotTimer = 7f;
+        DisplayText(54, 20);
+        Invoke("LittleHint", plotTimer);
+    }
+
+    public void LittleHint()
+    {
+        spaceshipPlayer.Mumble();
+        plotTimer = 6f;
+        DisplayText(55, 20);
+        Invoke("Recognize", plotTimer);
+    }
+
+    public void Recognize()
+    {
+        spaceshipPlayer.Mumble();
+        plotTimer = 7f;
+        DisplayText(56, 20);
+        Invoke("Course", plotTimer);
+    }
+
+    public void Course()
+    {
+        plotTimer = 14f;
+        DisplayText(57, 23);
+        Invoke("RedAlert", plotTimer);
+    }
+    public void RedAlert()
+    {
+        plotTimer = 7f;
+        DisplayText(58, 20);
+        Invoke("WhatDoesItMean", plotTimer);
+    }
+    public void WhatDoesItMean()
+    {
+        spaceshipPlayer.WhyDoesItMatter();
+        plotTimer = 6f;
+        DisplayText(59, 20);
+        Invoke("YouClimbed", plotTimer);
+    }
+    public void YouClimbed()
+    {
+        plotTimer = 12f;
+        DisplayText(60, 20);
+        Invoke("NoMatter", plotTimer);
+    }
+    public void NoMatter()
+    {
+        plotTimer = 12f;
+        DisplayText(61, 20);
+        Invoke("MaybeTheLabs", plotTimer);
+    }
+    public void MaybeTheLabs()
+    {
+        spaceshipPlayer.MaybeTheLabs();
+        plotTimer = 5f;
+        DisplayText(62, 20);
+        Invoke("ToTheLabs", plotTimer);
+    }
+
+    public void ToTheLabs()
+    {
+        plotTimer = 5f;
+        DisplayText(63, 20);
+        Invoke("Labs", plotTimer);
     }
 
     public void Labs() {

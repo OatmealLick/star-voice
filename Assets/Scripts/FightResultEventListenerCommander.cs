@@ -89,9 +89,9 @@ public class FightResultEventListenerCommander : MonoBehaviour
 	}
     void WonTheWholeBattle()
     {
-		Destroy (GameObject.Find ("Bear(Clone)"));
-		Destroy (GameObject.Find ("Wood(Clone)"));
-		startFight = false;
+        Destroy(GameObject.Find("Commander(Clone)"));
+        Destroy(GameObject.Find("Knife(Clone)"));
+        startFight = false;
 		StopCoroutine (co);
         Debug.Log("won everything");
 		Invoke ("ProceedToSpaceShip", 4.5f);
@@ -119,7 +119,7 @@ public class FightResultEventListenerCommander : MonoBehaviour
 	}
 
 	void ProceedToSpaceShip() {
-        GameObject.Find("PlotHolder").GetComponent<PlotAct2>().NextStep(1, 8);
+        GameObject.Find("PlotHandler").GetComponent<PlotAct2>().NextStep(1, 8);
    		Destroy (gameObject);
 	}
 }
