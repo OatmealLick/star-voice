@@ -251,34 +251,34 @@ public class SpacePlot : MonoBehaviour {
         FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
         fightListener.attackCount = 10;
         fightListener.health = 1;
-        fightListener.delaySingleFightInstance = 3.3f;
+        fightListener.delaySingleFightInstance = 2.3f;
         fightListener.hitsToKill = 5;
-        fightListener.timeForAttack = 1.2f;
+        fightListener.timeForAttack = 1f;
     }
 
 
     public void Labs() {
 		Destroy(GameObject.Find("Corridor(Clone)"));
-		plotTimer = 10f;
+		plotTimer = 16f;
 		DisplayText(41, 20);
 		Invoke ("WhatHappenedHere", plotTimer);
 	}
 
 	public void WhatHappenedHere() {
-		plotTimer = 8f;
+		plotTimer = 5f;
 		DisplayText(42, 20);
 		Invoke ("YouHearAnInhumanScreech", plotTimer);
 	}
 
 	public void YouHearAnInhumanScreech() {
-		plotTimer = 14f;
+		plotTimer = 17f;
 		DisplayText(43, 20);
-		Invoke ("YouHearAnInhumanScreech", plotTimer);
+		Invoke ("WhatsWrongWithHim", plotTimer);
 	}
 		
 
 	public void WhatsWrongWithHim() {
-		plotTimer = 5f;
+		plotTimer = 4f;
 		DisplayText(44, 20);
 		Invoke ("HeLetsOutScream", plotTimer);
 	}
@@ -299,7 +299,16 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void Run() {
-
+		musicManager.GetComponent<MusicManager>().Fight();
+		fightSystem = (GameObject) Resources.Load ("RUN_FIGHT_LISTENER");
+		GameObject system = Instantiate(fightSystem);
+		system.transform.SetAsFirstSibling();
+		FightResultEventListenerRunning fightListener = system.GetComponent<FightResultEventListenerRunning>();
+		fightListener.attackCount = 10;
+		fightListener.health = 2;
+		fightListener.delaySingleFightInstance = 1.3f;
+		fightListener.hitsToKill = 6;
+		fightListener.timeForAttack = 0.8f;
 	}
 
 	public void FaceHim() {
