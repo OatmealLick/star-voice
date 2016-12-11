@@ -344,6 +344,7 @@ public class SpacePlot : MonoBehaviour {
     }
 
     public void Labs() {
+        musicManager.GetComponent<MusicManager>().Labs();
 		Destroy(GameObject.Find("Corridor(Clone)"));
 		plotTimer = 16f;
 		DisplayText(41, 20);
@@ -351,7 +352,8 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void WhatHappenedHere() {
-		plotTimer = 5f;
+        spaceshipPlayer.MoreLikeIt();
+        plotTimer = 5f;
 		DisplayText(42, 20);
 		Invoke ("YouHearAnInhumanScreech", plotTimer);
 	}
@@ -364,7 +366,8 @@ public class SpacePlot : MonoBehaviour {
 		
 
 	public void WhatsWrongWithHim() {
-		plotTimer = 4f;
+        spaceshipPlayer.ComeAtMe();
+        plotTimer = 4f;
 		DisplayText(44, 20);
 		Invoke ("HeLetsOutScream", plotTimer);
 	}
@@ -409,37 +412,48 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void YouHereASilentWeeze() {
-		plotTimer = 12f;
+        musicManager.GetComponent<MusicManager>().Labs();
+        plotTimer = 12f;
 		DisplayText(65, 20);
 		Invoke ("ItCantBeHappening", plotTimer);
 	}
 
 	public void ItCantBeHappening() {
-		plotTimer = 12f;
+        spaceshipPlayer.Dialog2("1");
+        plotTimer = 12f;
 		DisplayText(66, 10);
 		Invoke ("BeyondWhat", plotTimer);
 	}
 
 	public void BeyondWhat() {
-		plotTimer = 6.5f;
+        spaceshipPlayer.Dialog2("2");
+        plotTimer = 6.5f;
 		DisplayText(67, 24);
 		Invoke ("WePreparedWell", plotTimer);
 	}
 
 	public void WePreparedWell() {
-		plotTimer = 10f;
+        spaceshipPlayer.Dialog2("3");
+        plotTimer = 10f;
 		DisplayText(68, 10);
 		Invoke ("WhatAreYouTalkingAbout", plotTimer);
 	}
 
 	public void WhatAreYouTalkingAbout() {
-		plotTimer = 5f;
+        spaceshipPlayer.Dialog2("4");
+        plotTimer = 5f;
 		DisplayText(69, 27);
 		Invoke ("TheSun", plotTimer);
 	}
-
-	public void TheSun() {
-		plotTimer = 23f;
+    public void ShowSun()
+    {
+        GameObject sun = (GameObject)Instantiate(Resources.Load("Sun"));
+        sun.transform.SetParent(bgCanvas.transform, false);
+    }
+    public void TheSun() {
+        ShowSun();
+        spaceshipPlayer.Dialog2("5");
+        plotTimer = 23f;
 		DisplayText(70, 10);
 		//Invoke ("RunOrFaceHim", plotTimer);
 	}

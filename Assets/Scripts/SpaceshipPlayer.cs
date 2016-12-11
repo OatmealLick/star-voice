@@ -36,6 +36,22 @@ public class SpaceshipPlayer : MonoBehaviour {
         if (n == "4b") source.PlayOneShot((AudioClip)Resources.Load("Dialog4b"), 1);
         if (n == "5") source.PlayOneShot((AudioClip)Resources.Load("Dialog5"), 1);
     }
+    public void Dialog2(string n)
+    {
+        if (n == "1") source.PlayOneShot((AudioClip)Resources.Load("Dialog21"), 1);
+        if (n == "2") source.PlayOneShot((AudioClip)Resources.Load("Dialog22"), 1);
+        if (n == "3") source.PlayOneShot((AudioClip)Resources.Load("Dialog23"), 1);
+        if (n == "4") source.PlayOneShot((AudioClip)Resources.Load("Dialog24"), 1);
+        if (n == "5") source.PlayOneShot((AudioClip)Resources.Load("Dialog25"), 1);
+    }
+    public void MoreLikeIt()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("More_like_it"), 1);
+    }
+    public void ComeAtMe()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Come_at_me"), 1);
+    }
     public void IsHeMad()
     {
         source.PlayOneShot((AudioClip)Resources.Load("Is_he_mad"), 1);
