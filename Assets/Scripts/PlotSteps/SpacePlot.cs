@@ -146,7 +146,7 @@ public class SpacePlot : MonoBehaviour {
 
 	public void AManIsStanding() {
 
-		plotTimer = 10f;
+		plotTimer = 9f;
 		DisplayText(28, 20);
         ShowCommander();
 		Invoke ("IDontKnowIfYoureAware", plotTimer);
@@ -158,14 +158,14 @@ public class SpacePlot : MonoBehaviour {
 	}
 	public void IDontKnowIfYoureAware() {
         spaceshipPlayer.Dialog("1");
-        plotTimer = 10f;
+        plotTimer = 8f;
 		DisplayText (29, 20);
 		Invoke ("WhereAreWe", plotTimer);
     }
 
 	public void WhereAreWe() {
         spaceshipPlayer.Dialog("2a");
-        plotTimer = 10f;
+        plotTimer = 6f;
 		DisplayText (30, 20);
 		Invoke ("ASituationIsCritical", plotTimer);
 	}
@@ -179,32 +179,35 @@ public class SpacePlot : MonoBehaviour {
 
 	public void ButWhatIsIt() {
         spaceshipPlayer.Dialog("4a");
-        plotTimer = 7f;
+        plotTimer = 4.5f;
 		DisplayText (32, 20);
 		Invoke ("AnswersAreNot", plotTimer);
 	}
 
 	public void AnswersAreNot() {
         spaceshipPlayer.Dialog("5");
-        plotTimer = 8.4f;
+        plotTimer = 7.4f;
 		DisplayText (33, 20);
 		Invoke ("IsHeMad", plotTimer);
 	}
 
 	public void IsHeMad() {
-		plotTimer = 3f;
+        spaceshipPlayer.IsHeMad();
+        plotTimer = 3f;
 		DisplayText (34, 20);
 		Invoke ("IsThereAReason", plotTimer);
 	}
 
 	public void IsThereAReason() {
-		plotTimer = 4f;
+        spaceshipPlayer.IsThereReason();
+        plotTimer = 5f;
 		DisplayText (35, 20);
 		Invoke ("IsThere", plotTimer);
 	}
 
 	public void IsThere() {
-		plotTimer = 3f;
+        spaceshipPlayer.IsThere();
+        plotTimer = 3f;
 		DisplayText (36, 20);
 		Invoke ("ThereIsOrThereIsNot", plotTimer);
 	}
@@ -225,7 +228,11 @@ public class SpacePlot : MonoBehaviour {
 		Debug.Log ("EUREKA");
         CommanderFight();
 	}
-
+    public void CommanderAgain()
+    {
+        ShowCommander();
+        CommanderFight();
+    }
     public void CommanderFight()
     {
         GameObject knifeImage = Instantiate(knife);
@@ -236,7 +243,7 @@ public class SpacePlot : MonoBehaviour {
         FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
         fightListener.attackCount = 10;
         fightListener.health = 1;
-        fightListener.delaySingleFightInstance = 2.5f;
+        fightListener.delaySingleFightInstance = 3.3f;
         fightListener.hitsToKill = 5;
         fightListener.timeForAttack = 1.2f;
     }

@@ -17,9 +17,10 @@ public class MusicManager : MonoBehaviour {
     }
     public void Fight()
     {
-        source.volume = 1f;
+        
         source.clip = (AudioClip)Resources.Load("fight!");
         source.loop = true;
+        source.volume = 1f;
         source.Play();
     }
     public void Bridge()

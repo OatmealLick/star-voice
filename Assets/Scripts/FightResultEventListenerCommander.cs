@@ -99,21 +99,23 @@ public class FightResultEventListenerCommander : MonoBehaviour
     void LostTheWholeBattle()
     {
         Debug.Log("lost everything");
-
-		Destroy (GameObject.Find ("Commander(Clone)"));
+        GameObject end = (GameObject)Instantiate(Resources.Load("TheEnd"));
+        end.transform.SetAsFirstSibling();
+        end.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+        Destroy (GameObject.Find ("Commander(Clone)"));
 		Destroy (GameObject.Find ("Knife(Clone)"));
-        Destroy(gameObject);
         //Destroy (GameObject.Find ("FightEventsListener(Clone)"));
         startFight = false;
+        StopCoroutine(co);
 		Invoke ("Respawn", 7f);
 
     }
 
 	void Respawn() {
 		// TODO CHANGE STEP
-		plot.NextStep (1, 6);
-
-		Destroy (gameObject);
+		plot.NextStep (1, 7);
+        Destroy(GameObject.Find("TheEnd(Clone)"));
+        Destroy(gameObject);
 	}
 
 	void ProceedToSpaceShip() {

@@ -99,8 +99,10 @@ public class FightResultEventListener : MonoBehaviour
     void LostTheWholeBattle()
     {
         Debug.Log("lost everything");
-
-		Destroy (GameObject.Find ("Bear(Clone)"));
+        GameObject end = (GameObject)Instantiate(Resources.Load("TheEnd"));
+        end.transform.SetAsFirstSibling();
+        end.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+        Destroy (GameObject.Find ("Bear(Clone)"));
 		Destroy (GameObject.Find ("Wood(Clone)"));
 		//Destroy (GameObject.Find ("FightEventsListener(Clone)"));
 		startFight = false;
@@ -110,8 +112,8 @@ public class FightResultEventListener : MonoBehaviour
 
 	void Respawn() {
 		plot.NextStep (1, 6);
-
-		Destroy (gameObject);
+        Destroy(GameObject.Find("TheEnd(Clone)"));
+        Destroy(gameObject);
 	}
 
 	void ProceedToSpaceShip() {

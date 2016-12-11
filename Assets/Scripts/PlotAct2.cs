@@ -49,7 +49,9 @@ public class PlotAct2 : Plot
 		case 7:
 			spacePlot.FaceHim ();
 			break;
-            
+        case 8:
+            spacePlot.CommanderAgain();
+            break;
         }
     }
 
