@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FightResultEventListener : MonoBehaviour
 {
@@ -9,34 +10,39 @@ public class FightResultEventListener : MonoBehaviour
 	public float delay = 0f;
     public int hitsToKill = 3;
 	public float delaySingleFightInstance = 3.5837237f;
-
+	private Plot plot;
 	private bool fightInProgress = false;
-	private bool startFight = false;
+	public bool startFight = false;
 	private int fightNumber = 0;
+	private Coroutine co;
 
 	private GameObject fightPrefab;
 
 	// Use this for initialization
 	void Start () {
+		plot = GameObject.Find ("PlotHandler").GetComponent<Plot> ();
 		FightInstance.FightWon += IncreaseHealth;
 		FightInstance.FightLost += DecreaseHealth;
 		fightPrefab = (GameObject)Resources.Load ("Fight");
 		Invoke ("EnableFighting", delay);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		if(startFight==true && fightInProgress==true && (health > attackCount - fightNumber || fightNumber == attackCount)){
+			fightInProgress = false;
+			startFight = false;
+			fightNumber = attackCount;
+			WonTheWholeBattle();
+		}
 		if (startFight==true && !fightInProgress && fightNumber<attackCount) {
 			fightInProgress = true;
-			StartCoroutine(DelayInstantiateFight(timeForAttack, delaySingleFightInstance));
+			co = StartCoroutine(DelayInstantiateFight(timeForAttack, delaySingleFightInstance));
 			//InstantiateFight (timeForAttack);
 			fightNumber++;
 		}
 
-		if(fightInProgress==true && (health <= attackCount - fightNumber || fightNumber == attackCount)){
-            fightInProgress = false;
-            WonTheWholeBattle();
-        }
+
 
 	}
 
@@ -77,17 +83,40 @@ public class FightResultEventListener : MonoBehaviour
 
 	void InstantiateFight(float exactTime) {
 		GameObject fight = Instantiate (fightPrefab);
-		if (Mathf.Abs(exactTime - 3f) < 0.001f) {
+		//if (Mathf.Abs(exactTime - 3f) < 0.001f) {
 			fight.GetComponent<FightInstance> ().time = exactTime;
-		}
+		//}
 	}
     void WonTheWholeBattle()
     {
+		Destroy (GameObject.Find ("Bear(Clone)"));
+		Destroy (GameObject.Find ("Wood(Clone)"));
+		startFight = false;
+		StopCoroutine (co);
         Debug.Log("won everything");
+		Invoke ("ProceedToSpaceShip", 4.5f);
     }
     void LostTheWholeBattle()
     {
         Debug.Log("lost everything");
+
+		Destroy (GameObject.Find ("Bear(Clone)"));
+		Destroy (GameObject.Find ("Wood(Clone)"));
+		//Destroy (GameObject.Find ("FightEventsListener(Clone)"));
+		startFight = false;
+		Invoke ("Respawn", 7f);
+
     }
+
+	void Respawn() {
+		plot.NextStep (1, 6);
+
+		Destroy (gameObject);
+	}
+
+	void ProceedToSpaceShip() {
+		SceneManager.LoadScene ("SpaceShip");
+		Destroy (gameObject);
+	}
 }
 

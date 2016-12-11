@@ -217,7 +217,11 @@ public class ForestPlot : MonoBehaviour {
         GameObject system = Instantiate(fightSystem);
         system.transform.SetAsFirstSibling();
         FightResultEventListener fightListener = system.GetComponent<FightResultEventListener>();
-        //fightListener.delay();
+		fightListener.attackCount = 10;
+		fightListener.health = 4;
+		fightListener.delaySingleFightInstance = 2.5f;
+		fightListener.hitsToKill = 5;
+		fightListener.timeForAttack = 1.2f;
 
     }
     //    // Update is called once per frame
