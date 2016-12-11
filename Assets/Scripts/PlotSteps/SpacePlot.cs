@@ -309,11 +309,17 @@ public class SpacePlot : MonoBehaviour {
         DisplayText(59, 20);
         Invoke("YouClimbed", plotTimer);
     }
+    public void ShowSpace()
+    {
+        GameObject space = (GameObject)Instantiate(Resources.Load("Space"));
+        space.transform.SetParent(bgCanvas.transform, false);
+    }
     public void YouClimbed()
     {
         plotTimer = 12f;
         DisplayText(60, 20);
         Invoke("NoMatter", plotTimer);
+        Invoke("ShowSpace", 1f);
     }
     public void NoMatter()
     {
@@ -331,6 +337,7 @@ public class SpacePlot : MonoBehaviour {
 
     public void ToTheLabs()
     {
+        Destroy(GameObject.Find("Space(Clone)"));
         plotTimer = 5f;
         DisplayText(63, 20);
         Invoke("Labs", plotTimer);
