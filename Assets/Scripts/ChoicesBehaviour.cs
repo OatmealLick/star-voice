@@ -13,7 +13,8 @@ public class ChoicesBehaviour : MonoBehaviour {
     public GameObject plot;
 	// Use this for initialization
 	void Start () {
-		// load choice GameObject to enable instantiating
+        // load choice GameObject to enable instantiating
+        plot = GameObject.Find("PlotHandler");
 		GameObject choice = (GameObject)Resources.Load ("Choice");
 		Rect rect = gameObject.GetComponent<RectTransform> ().rect;
 		rect.width = widthScale * gameObject.transform.parent.GetComponent<RectTransform> ().rect.width;

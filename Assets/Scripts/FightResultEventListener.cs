@@ -48,6 +48,7 @@ public class FightResultEventListener : MonoBehaviour
 		Debug.Log ("lost");
 		fightInProgress = false;
 		health--;
+        WoodController.Pac(); // do zmiany Łukaszku
         if (health <= 0)
         {
             fightInProgress = false;
@@ -58,9 +59,10 @@ public class FightResultEventListener : MonoBehaviour
 	void IncreaseHealth() {
 		Debug.Log ("won");
 		fightInProgress = false;
-		//health++;
-		// actually why would you get hp for won battle?
-	}
+        WoodController.AttackWithWood(); // do zmiany Łukaszku
+                                         //health++;
+                                         // actually why would you get hp for won battle?
+    }
 
 	void OnDestroy() {
 		FightInstance.FightWon -= IncreaseHealth;
