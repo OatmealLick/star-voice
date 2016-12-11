@@ -54,7 +54,7 @@ public class FightResultEventListenerCommander : MonoBehaviour
 		Debug.Log ("lost");
 		fightInProgress = false;
 		health--;
-        WoodController.Pac(); // do zmiany Łukaszku
+        KnifeController.Shoot();
         if (health <= 0)
         {
             fightInProgress = false;
@@ -65,7 +65,7 @@ public class FightResultEventListenerCommander : MonoBehaviour
 	void IncreaseHealth() {
 		Debug.Log ("won");
 		fightInProgress = false;
-        WoodController.AttackWithWood(); // do zmiany Łukaszku
+        KnifeController.AttackWithKnife(); // do zmiany Łukaszku
                                          //health++;
                                          // actually why would you get hp for won battle?
     }
@@ -100,10 +100,11 @@ public class FightResultEventListenerCommander : MonoBehaviour
     {
         Debug.Log("lost everything");
 
-		Destroy (GameObject.Find ("Bear(Clone)"));
-		Destroy (GameObject.Find ("Wood(Clone)"));
-		//Destroy (GameObject.Find ("FightEventsListener(Clone)"));
-		startFight = false;
+		Destroy (GameObject.Find ("Commander(Clone)"));
+		Destroy (GameObject.Find ("Knife(Clone)"));
+        Destroy(gameObject);
+        //Destroy (GameObject.Find ("FightEventsListener(Clone)"));
+        startFight = false;
 		Invoke ("Respawn", 7f);
 
     }
