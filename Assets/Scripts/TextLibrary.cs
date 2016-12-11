@@ -53,9 +53,14 @@ public class TextLibrary : MonoBehaviour {
 		script.Add("*What happened here?*");//42
 		script.Add("You hear an inhuman screech coming from the distance. It’s getting closer. A fire extinguisher comes flying through a door. A man busts into the room with a crazed look in his eyes, forehead all covered in bloody scars.");//43
 		script.Add("*What’s wrong with him !?*");//44
-		script.Add("He lets out a horrifying scream and charges right at you. \nYou see an isolation cell on the left.");//45
-		script.Add("");
-		script.Add("");
+		script.Add("He lets out a horrifying scream and charges right at you. You see an isolation cell on the left.");//45
+		script.Add("You run into the cell at the last second. You slam the door behind you. You hear him charging at the door head first again and again. Suddenly you hear a crunch and everything goes silent. You feel sick.");//46
+		script.Add("You hear a silent wheeze behind you. You turn around to see a man curled up on the floor. You see extensive wounds all over his body.");//47
+		script.Add("- It can’t be happening... We were meant to see what’s beyond...");
+		script.Add("Beyond what? What’s going on in here?");
+		script.Add("- We were prepared so well, but we never expected this…");
+		script.Add("What are you talking about?");
+		script.Add("Aah... the sun... I can feel the sun caressing my skin... The waves are taking me away...");
 		script.Add("");
 
     }
