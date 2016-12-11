@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpacePlot : MonoBehaviour {
 
     Canvas renderCanvas;
+	Canvas bgCanvas;
     private float plotTimer = 0.0f;
     //private int currentStep = 1;
     private Plot plot;
@@ -22,7 +23,8 @@ public class SpacePlot : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
+		bgCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
+		renderCanvas = (Canvas)GameObject.Find("SecondCanvas").GetComponent<Canvas>();
         defaultText = (GameObject)Resources.Load("DefaultText");
         upperText = (GameObject)Resources.Load("UpperText");
         textLibrary = scriptManager.GetComponent<TextLibrary>();
@@ -59,10 +61,79 @@ public class SpacePlot : MonoBehaviour {
     }
     public void DarkCorridor()
     {
-        plotTimer = 10f;
-        DisplayText(20, 20);
-        Invoke("DarkCorridor", plotTimer);
+        plotTimer = 12f;
+        DisplayText(20, 22);
+        Invoke("WTF", plotTimer);
     }
+
+	public void WTF()
+	{
+		plotTimer = 4f;
+		DisplayText(21, 20);
+		spaceshipPlayer.WTF();
+		Invoke("WeHaveACriticalSituation", plotTimer);
+	}
+
+	public void WeHaveACriticalSituation()
+	{
+		plotTimer = 15f;
+		DisplayText(22, 20);
+		Invoke("YouSlowlyWalkThroughCorridor", plotTimer);
+	}
+
+	public void YouSlowlyWalkThroughCorridor()
+	{
+		plotTimer = 3f;
+		DisplayText(23, 20);
+		Invoke("BridgeOrLabs", plotTimer);
+	}
+
+	public void BridgeOrLabs() {
+		GameObject instantiatedChoice = Instantiate(choices);
+		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
+		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(4);
+		bridgeOrLabs.nextPlotSteps = 1;
+
+		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
+	}
+
+	public void Bridge() {
+		plotTimer = 10f;
+		DisplayText(24, 20);
+		Invoke ("FollowingSigns", plotTimer);
+	}
+
+	public void FollowingSigns() {
+		plotTimer = 10f;
+		DisplayText(25, 20);
+		Invoke ("AreWeInSpace", plotTimer);
+	}
+
+	public void AreWeInSpace() {
+		plotTimer = 10f;
+		DisplayText(26, 20);
+		Invoke ("Ekhem", plotTimer);
+	}
+
+	public void Ekhem() {
+		plotTimer = 5f;
+		DisplayText(27, 20);
+		Invoke ("AManIsStanding", plotTimer);
+	}
+
+	public void AManIsStanding() {
+		plotTimer = 10f;
+		DisplayText(28, 20);
+		Invoke ("AManIsStanding", plotTimer);
+	}
+
+	public void Labs() {
+		plotTimer = 10f;
+		DisplayText(24, 20);
+		//Invoke ("");
+	}
+
+
     // Update is called once per frame
     void Update () {
 		
