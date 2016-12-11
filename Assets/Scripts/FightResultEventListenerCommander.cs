@@ -119,8 +119,8 @@ public class FightResultEventListenerCommander : MonoBehaviour
 	}
 
 	void ProceedToSpaceShip() {
-		SceneManager.LoadScene ("SpaceShip");
-		Destroy (gameObject);
+        GameObject.Find("PlotHolder").GetComponent<PlotAct2>().NextStep(1, 8);
+   		Destroy (gameObject);
 	}
 }
 

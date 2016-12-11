@@ -60,6 +60,10 @@ public class SpaceshipPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("hallway"), 1);
     }
+    public void KnifeAttack()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Bear_attack"), 1);
+    }
     // Update is called once per frame
     void Update () {
 		

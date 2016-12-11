@@ -52,7 +52,11 @@ public class PlotAct2 : Plot
         case 8:
             spacePlot.CommanderAgain();
             break;
+        case 9:
+                spacePlot.WonWithCommander();
+                break;
         }
+        
     }
 
 

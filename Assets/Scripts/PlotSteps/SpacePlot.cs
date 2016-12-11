@@ -251,11 +251,17 @@ public class SpacePlot : MonoBehaviour {
         FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
         fightListener.attackCount = 10;
         fightListener.health = 1;
+        fightListener.delay = 1;
         fightListener.delaySingleFightInstance = 2.3f;
         fightListener.hitsToKill = 5;
         fightListener.timeForAttack = 1f;
     }
 
+    public void WonWithCommander()
+    {
+        plotTimer = 8f;
+        DisplayText(37, 20);
+    }
 
     public void Labs() {
 		Destroy(GameObject.Find("Corridor(Clone)"));

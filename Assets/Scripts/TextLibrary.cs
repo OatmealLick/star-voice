@@ -56,12 +56,24 @@ public class TextLibrary : MonoBehaviour {
 		script.Add("He lets out a horrifying scream and charges right at you. You see an isolation cell on the left.");//45
 		script.Add("You run into the cell at the last second. You slam the door behind you. You hear him charging at the door head first again and again. Suddenly you hear a crunch and everything goes silent. You feel sick.");//46
 		script.Add("You hear a silent wheeze behind you. You turn around to see a man curled up on the floor. You see extensive wounds all over his body.");//47
-		script.Add("- It can’t be happening... We were meant to see what’s beyond...");
-		script.Add("Beyond what? What’s going on in here?");
-		script.Add("- We were prepared so well, but we never expected this…");
-		script.Add("What are you talking about?");
-		script.Add("Aah... the sun... I can feel the sun caressing my skin... The waves are taking me away...");
-		script.Add("");
+		script.Add("- It can’t be happening... We were meant to see what’s beyond..."); //48
+		script.Add("Beyond what? What’s going on in here?"); //49
+		script.Add("- We were prepared so well, but we never expected this…"); //50
+		script.Add("What are you talking about?"); //51
+		script.Add("Aah... the sun... I can feel the sun caressing my skin... The waves are taking me away..."); //52
+		script.Add("*Why did I kill him? Did he attack first? What’s going on with my mind?!*");//53
+        script.Add("You pass by the body of the commander and walk up to the screen that was behind him. ");//54
+        script.Add("*Just a little hint…. I need to know! *");//55
+        script.Add("You cannot recognize most of the writing, but you can make out some of it...");//56
+        script.Add("... course ABX765... Logdate 102 course stable... Logdate 123 course stable... Logdate 124 course not found... navigation system failure... Logdate 127 no course chosen... Logdate 130 no course chosen...");//57
+        script.Add("... Red alert… … All crew members are to report on bridge… ...Danger…");//58
+        script.Add("*What does it mean?*");//59
+        script.Add("You climbed the bridge. The universe lies beneath your feet. Does it?");//60
+        script.Add("No matter how hard you try, you can’t make sense out of the things you are seeing.");//61
+        script.Add("*Maybe the labs will give me some answers... *");//62
+        script.Add("You headed into the labs.");//63
+        script.Add("");//64
+
 
     }
     public string GetLine(int numberOfLine)

@@ -221,7 +221,8 @@ public class ForestPlot : MonoBehaviour {
         FightResultEventListener fightListener = system.GetComponent<FightResultEventListener>();
 		fightListener.attackCount = 10;
 		fightListener.health = 4;
-		fightListener.delaySingleFightInstance = 3.3f;
+        fightListener.delay = 1;
+		fightListener.delaySingleFightInstance = 2.3f;
 		fightListener.hitsToKill = 5;
 		fightListener.timeForAttack = 1.2f;
 

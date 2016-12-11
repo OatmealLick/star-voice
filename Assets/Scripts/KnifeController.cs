@@ -17,13 +17,14 @@ public class KnifeController : MonoBehaviour
         GameObject knife = GameObject.Find("Knife(Clone)");
         Animator knifeAnimator = knife.GetComponent<Animator>();
         knifeAnimator.SetTrigger("Attack");
-        //ForestPlayer player = GameObject.Find("AudioSource").GetComponent<ForestPlayer>();
-       // player.BearAttack();
+        SpaceshipPlayer player = GameObject.Find("Audio Source").GetComponent<SpaceshipPlayer>();
+        player.KnifeAttack();
     }
+
     public static void Shoot()
     {
-        GameObject pac = (GameObject)Instantiate(Resources.Load("Pac"));
-        pac.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        GameObject splat = (GameObject)Instantiate(Resources.Load("Splat"));
+        splat.transform.SetParent(GameObject.Find("Canvas").transform, false);
         //ForestPlayer player = GameObject.Find("AudioSource").GetComponent<ForestPlayer>();
        // player.BearAttack();
     }
