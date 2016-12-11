@@ -49,11 +49,14 @@ public class TextLibrary : MonoBehaviour {
         script.Add("Please, tell me what’s happening!");//38
         script.Add("ANSWER ME!");//39
         script.Add("*He is a human being… Why would I kill him.*");//40
-        script.Add("");
-        script.Add("");
-        script.Add("");
-        script.Add("");
-        script.Add("");
+		script.Add("A broken sliding door blocks the entrance to the laboratories. You pry it open. Dents cover the walls of a brightly lit room. Pieces of sterile, white tiles and equipment are all over the floor."); //41
+		script.Add("*What happened here?*");//42
+		script.Add("You hear an inhuman screech coming from the distance. It’s getting closer. A fire extinguisher comes flying through a door. A man busts into the room with a crazed look in his eyes, forehead all covered in bloody scars.");//43
+		script.Add("*What’s wrong with him !?*");//44
+		script.Add("He lets out a horrifying scream and charges right at you. \nYou see an isolation cell on the left.");//45
+		script.Add("");
+		script.Add("");
+		script.Add("");
 
     }
     public string GetLine(int numberOfLine)

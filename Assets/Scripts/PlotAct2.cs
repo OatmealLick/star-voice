@@ -37,6 +37,7 @@ public class PlotAct2 : Plot
 		case 3:
 			spacePlot.Labs ();
 			break;
+		
             
         }
     }

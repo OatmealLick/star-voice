@@ -153,10 +153,45 @@ public class SpacePlot : MonoBehaviour {
         GameObject corridor = (GameObject)Instantiate(Resources.Load("Commander"));
         corridor.transform.SetParent(bgCanvas.transform, false);
     }
-    public void Labs() {
+	public void Labs() {
+		Destroy(GameObject.Find("Corridor(Clone)"));
 		plotTimer = 10f;
-		DisplayText(24, 20);
-		//Invoke ("");
+		DisplayText(41, 20);
+		Invoke ("WhatHappenedHere", plotTimer);
+	}
+
+	public void WhatHappenedHere() {
+		plotTimer = 8f;
+		DisplayText(42, 20);
+		Invoke ("YouHearAnInhumanScreech", plotTimer);
+	}
+
+	public void YouHearAnInhumanScreech() {
+		plotTimer = 14f;
+		DisplayText(43, 20);
+		Invoke ("YouHearAnInhumanScreech", plotTimer);
+	}
+		
+
+	public void WhatsWrongWithHim() {
+		plotTimer = 5f;
+		DisplayText(44, 20);
+		Invoke ("HeLetsOutScream", plotTimer);
+	}
+
+	public void HeLetsOutScream() {
+		plotTimer = 10f;
+		DisplayText(45, 20);
+		Invoke ("RunOrFaceHim", plotTimer);
+	}
+
+	public void RunOrFaceHim() {
+		GameObject instantiatedChoice = Instantiate(choices);
+		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
+		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(5);
+		bridgeOrLabs.nextPlotSteps = 1;
+
+		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
 	}
 
 
