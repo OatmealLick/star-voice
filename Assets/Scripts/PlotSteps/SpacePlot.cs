@@ -226,8 +226,16 @@ public class SpacePlot : MonoBehaviour {
 
 	public void ThereIsNot() {
 		Debug.Log ("EUREKA");
-        CommanderFight();
-	}
+        HeIsAHuman();
+    }
+
+    public void HeIsAHuman()
+    {
+        spaceshipPlayer.HumanBeing();
+        plotTimer = 8f;
+        DisplayText(37, 20);
+        Invoke("CommanderFight", plotTimer);   
+    }
     public void CommanderAgain()
     {
         ShowCommander();
