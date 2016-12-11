@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour {
 
@@ -9,7 +10,8 @@ public class MusicManager : MonoBehaviour {
     void Start()
     {
         source = GetComponent<AudioSource>();
-        source.clip = (AudioClip)Resources.Load("Forest_music");
+        if (SceneManager.GetActiveScene().name == "Main") { source.clip = (AudioClip)Resources.Load("Forest_music"); }
+        else source.clip = (AudioClip)Resources.Load("Creepy_ambience");
         source.loop = true;
         source.Play();
     }

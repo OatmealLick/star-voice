@@ -20,6 +20,7 @@ public class SpacePlot : MonoBehaviour {
     public GameObject choices;
     public GameObject background;
     public GameObject fightSystem;
+    public GameObject bg;
     // Use this for initialization
     void Awake()
     {
@@ -72,7 +73,14 @@ public class SpacePlot : MonoBehaviour {
 		DisplayText(21, 20);
 		spaceshipPlayer.WTF();
 		Invoke("WeHaveACriticalSituation", plotTimer);
+        Invoke("ShowSpeaker", 2f);
 	}
+
+    public void ShowSpeaker()
+    {
+        GameObject speaker = (GameObject) Instantiate(Resources.Load("Speaker"));
+        speaker.transform.SetParent(bgCanvas.transform, false);
+    }
 
 	public void WeHaveACriticalSituation()
 	{
@@ -82,11 +90,19 @@ public class SpacePlot : MonoBehaviour {
 		Invoke("YouSlowlyWalkThroughCorridor", plotTimer);
 	}
 
-	public void YouSlowlyWalkThroughCorridor()
+    public void ShowCorridor()
+    {
+        Destroy(GameObject.Find("Speaker(Clone)"));
+        GameObject corridor = (GameObject)Instantiate(Resources.Load("Corridor"));
+        corridor.transform.SetParent(bgCanvas.transform, false);
+    }
+
+    public void YouSlowlyWalkThroughCorridor()
 	{
-		plotTimer = 6f;
+        plotTimer = 6f;
 		DisplayText(23, 20);
 		Invoke("BridgeOrLabs", plotTimer);
+        ShowCorridor();
 	}
 
 	public void BridgeOrLabs() {
@@ -99,8 +115,10 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void Bridge() {
-		plotTimer = 13f;
+        Destroy(GameObject.Find("Corridor(Clone)"));
+        plotTimer = 13f;
 		DisplayText(24, 20);
+        spaceshipPlayer.CorridorFootsteps();
 		Invoke ("FollowingSigns", plotTimer);
 	}
 
@@ -124,12 +142,18 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void AManIsStanding() {
+
 		plotTimer = 10f;
 		DisplayText(28, 20);
+        ShowCommander();
 		Invoke ("AManIsStanding", plotTimer);
 	}
-
-	public void Labs() {
+    public void ShowCommander()
+    {
+        GameObject corridor = (GameObject)Instantiate(Resources.Load("Commander"));
+        corridor.transform.SetParent(bgCanvas.transform, false);
+    }
+    public void Labs() {
 		plotTimer = 10f;
 		DisplayText(24, 20);
 		//Invoke ("");

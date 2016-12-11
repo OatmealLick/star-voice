@@ -56,7 +56,10 @@ public class SpaceshipPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Human_being"), 1);
     }
-
+    public void CorridorFootsteps()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("hallway"), 1);
+    }
     // Update is called once per frame
     void Update () {
 		
