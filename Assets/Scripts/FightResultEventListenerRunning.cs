@@ -94,20 +94,30 @@ public class FightResultEventListenerRunning : MonoBehaviour
     void LostTheWholeBattle()
     {
         Debug.Log("lost everything");
-
-		//Destroy (GameObject.Find ("Bear(Clone)"));
-		//Destroy (GameObject.Find ("Wood(Clone)"));
-		//Destroy (GameObject.Find ("FightEventsListener(Clone)"));
-		startFight = false;
-		Invoke ("Respawn", 7f);
+        GameObject ralik = (GameObject)Instantiate(Resources.Load("Ralik"));
+        ralik.transform.SetAsFirstSibling();
+        ralik.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+        GameObject.Find("Audio Source").GetComponent<SpaceshipPlayer>().Scream();
+        //Destroy (GameObject.Find ("Bear(Clone)"));
+        //Destroy (GameObject.Find ("Wood(Clone)"));
+        //Destroy (GameObject.Find ("FightEventsListener(Clone)"));
+        startFight = false;
+        Invoke("TheEnd", 4f);
+        Invoke("Respawn", 7f);
 
     }
-
-	void Respawn() {
+    void TheEnd()
+    {
+        GameObject end = (GameObject)Instantiate(Resources.Load("TheEnd"));
+        end.transform.SetAsFirstSibling();
+        end.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+        Destroy(GameObject.Find("Ralik(Clone)"));
+    }
+    void Respawn() {
 		// TODO check this
 		plot.NextStep (1, 6);
-
-		Destroy (gameObject);
+        Destroy(GameObject.Find("TheEnd(Clone)"));
+        Destroy(gameObject);
 	}
 
 	void RanAway() {

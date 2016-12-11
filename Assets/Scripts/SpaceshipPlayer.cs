@@ -52,6 +52,14 @@ public class SpaceshipPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Come_at_me"), 1);
     }
+    public void Scary()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Scary"), 1);
+    }
+    public void Scream()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Scream"), 1);
+    }
     public void IsHeMad()
     {
         source.PlayOneShot((AudioClip)Resources.Load("Is_he_mad"), 1);

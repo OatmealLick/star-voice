@@ -68,7 +68,7 @@ public class TextLibrary : MonoBehaviour {
         script.Add("... course ABX765... Logdate 102 course stable... Logdate 123 course stable... Logdate 124 course not found... navigation system failure... Logdate 127 no course chosen... Logdate 130 no course chosen...");//57
         script.Add("... Red alert… … All crew members are to report on bridge… ...Danger…");//58
         script.Add("*What does it mean?*");//59
-        script.Add("You climbed the bridge. The universe lies beneath your feet. Does it?");//60
+        script.Add("You climbed the bridge. The universe lies beneath your feet. Doesn't it?");//60
         script.Add("No matter how hard you try, you can’t make sense out of the things you are seeing.");//61
         script.Add("*Maybe the labs will give me some answers... *");//62
         script.Add("You headed into the labs.");//63

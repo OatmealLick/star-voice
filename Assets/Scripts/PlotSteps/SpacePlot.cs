@@ -367,6 +367,7 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void YouHearAnInhumanScreech() {
+        spaceshipPlayer.Scary();
 		plotTimer = 17f;
 		DisplayText(43, 20);
 		Invoke ("WhatsWrongWithHim", plotTimer);
@@ -381,6 +382,7 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void HeLetsOutScream() {
+        spaceshipPlayer.Scream();
 		plotTimer = 10f;
 		DisplayText(45, 20);
 		Invoke ("RunOrFaceHim", plotTimer);

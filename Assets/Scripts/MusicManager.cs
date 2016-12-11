@@ -31,7 +31,7 @@ public class MusicManager : MonoBehaviour {
     }
     public void Labs()
     {
-        source.clip = (AudioClip)Resources.Load("Creepy_ambience");
+        source.clip = (AudioClip)Resources.Load("Labs");
         source.loop = true;
         source.volume = 0.5f;
         source.Play();
