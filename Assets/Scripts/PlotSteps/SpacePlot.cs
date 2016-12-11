@@ -76,6 +76,7 @@ public class SpacePlot : MonoBehaviour {
 
 	public void WeHaveACriticalSituation()
 	{
+		spaceshipPlayer.Speaker ();
 		plotTimer = 15f;
 		DisplayText(22, 20);
 		Invoke("YouSlowlyWalkThroughCorridor", plotTimer);
@@ -83,7 +84,7 @@ public class SpacePlot : MonoBehaviour {
 
 	public void YouSlowlyWalkThroughCorridor()
 	{
-		plotTimer = 3f;
+		plotTimer = 6f;
 		DisplayText(23, 20);
 		Invoke("BridgeOrLabs", plotTimer);
 	}
@@ -98,18 +99,19 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void Bridge() {
-		plotTimer = 10f;
+		plotTimer = 13f;
 		DisplayText(24, 20);
 		Invoke ("FollowingSigns", plotTimer);
 	}
 
 	public void FollowingSigns() {
-		plotTimer = 10f;
+		plotTimer = 15f;
 		DisplayText(25, 20);
 		Invoke ("AreWeInSpace", plotTimer);
 	}
 
 	public void AreWeInSpace() {
+		spaceshipPlayer.Stars ();
 		plotTimer = 10f;
 		DisplayText(26, 20);
 		Invoke ("Ekhem", plotTimer);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Plot : MonoBehaviour {
 	//int plot = 0;
 	public int currentStep = 0;
-	private ForestPlot forestPlot;
+	//public ForestPlot forestPlot;
 	// Use this for initialization
 	void Start () {
 		

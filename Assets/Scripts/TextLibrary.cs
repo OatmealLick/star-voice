@@ -27,9 +27,9 @@ public class TextLibrary : MonoBehaviour {
         script.Add("*Far better... now I can think... *"); //16
         script.Add("Suddenly, you’ve heard a noise. Something is coming your way. Something big."); //17
         script.Add("* God, please, no… What is this? *"); //18
-        script.Add("* Why... Why there is... so much... blood here. Is it... is it.... a knife in my hand? What is this, lying on the floor... A BODY?! I… *"); //19
+        script.Add("* Why... Why there is... so much... blood here. Is it... is it.... a knife in my hand? What is this, lying on the floor... A body?! *"); //19
         script.Add("A dark corridor, a body of an unknown man lies beneath your feet. You breathe heavily. You feel pain. A faint light shines on your hands, all covered in blood.");//20
-        script.Add("*What the…");//21
+        script.Add("*What the hell?!*");//21
         script.Add("-We have a critical situation, I repeat we have a critical situation. Everyone is to check in at the bridge, where proper procedures will be executed."); //22
         script.Add("You slowly walk into the corridor. It splits into two ways."); //23
         script.Add("You walk through an empty and silent corridor. The sound of your footsteps bounces around the walls making you question if you’re the only one here. ");//24
