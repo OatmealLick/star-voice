@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ForestPlot : MonoBehaviour {
 
     Canvas renderCanvas;
+    Canvas bgCanvas;
     private float plotTimer = 0.0f;
     //private int currentStep = 1;
 	private Plot plot;
@@ -24,7 +25,8 @@ public class ForestPlot : MonoBehaviour {
     public GameObject wood;
 
 	void Awake() {
-		renderCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
+        bgCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
+        renderCanvas = (Canvas)GameObject.Find("SecondCanvas").GetComponent<Canvas>();
 		defaultText = (GameObject)Resources.Load ("DefaultText");
         upperText = (GameObject)Resources.Load("UpperText");
         textLibrary = scriptManager.GetComponent<TextLibrary>();
@@ -113,7 +115,7 @@ public class ForestPlot : MonoBehaviour {
 
 	private void ShowCampfire() {
 		GameObject bg = Instantiate (background);
-		bg.transform.SetParent (renderCanvas.transform, false);
+		bg.transform.SetParent (bgCanvas.transform, false);
 	}
 
     public void FireApproach()
