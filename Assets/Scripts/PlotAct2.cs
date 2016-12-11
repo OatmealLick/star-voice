@@ -10,7 +10,7 @@ public class PlotAct2 : Plot
     // Use this for initialization
     void Start()
     {
-        spacePlot = GetComponent<SpacePlot>();
+        spacePlot = GetComponent<SpacePlot>(); 
         Invoke("BeginPlot", 1f);
     }
     override public void BeginPlot()

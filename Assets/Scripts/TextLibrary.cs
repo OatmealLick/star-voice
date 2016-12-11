@@ -79,6 +79,8 @@ public class TextLibrary : MonoBehaviour {
 		script.Add ("- We prepared so well, but we never expected this…");//68
 		script.Add ("What are you talking about?");//69
 		script.Add ("-Aah… The sun… I can feel the sun caressing my skin… The waves are taking me away…");//70
+		script.Add ("He breathes his last breath and an unobtrusive smile shines upon his face. Your chance to understand any of this fades away. Then you hear familiar sound:");//71
+		script.Add ("You decide to visit labs hoping to find any answer.");//72
 
 
     }
