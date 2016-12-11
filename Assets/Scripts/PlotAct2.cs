@@ -37,7 +37,12 @@ public class PlotAct2 : Plot
 		case 3:
 			spacePlot.Labs ();
 			break;
-		
+		case 4:
+			spacePlot.ThereIs ();
+			break;
+		case 5:
+			spacePlot.ThereIsNot ();
+			break;
             
         }
     }

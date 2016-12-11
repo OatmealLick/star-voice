@@ -130,13 +130,13 @@ public class SpacePlot : MonoBehaviour {
 
 	public void AreWeInSpace() {
 		spaceshipPlayer.Stars ();
-		plotTimer = 10f;
+		plotTimer = 8f;
 		DisplayText(26, 20);
 		Invoke ("Ekhem", plotTimer);
 	}
 
 	public void Ekhem() {
-		plotTimer = 5f;
+		plotTimer = 3f;
 		DisplayText(27, 20);
 		Invoke ("AManIsStanding", plotTimer);
 	}
@@ -146,13 +146,80 @@ public class SpacePlot : MonoBehaviour {
 		plotTimer = 10f;
 		DisplayText(28, 20);
         ShowCommander();
-		Invoke ("AManIsStanding", plotTimer);
+		Invoke ("IDontKnowIfYoureAware", plotTimer);
 	}
     public void ShowCommander()
-    {
-        GameObject corridor = (GameObject)Instantiate(Resources.Load("Commander"));
-        corridor.transform.SetParent(bgCanvas.transform, false);
+	{
+		GameObject corridor = (GameObject)Instantiate (Resources.Load ("Commander"));
+		corridor.transform.SetParent (bgCanvas.transform, false);
+	}
+	public void IDontKnowIfYoureAware() {
+		plotTimer = 10f;
+		DisplayText (29, 20);
+		Invoke ("WhereAreWe", plotTimer);
     }
+
+	public void WhereAreWe() {
+		plotTimer = 10f;
+		DisplayText (30, 20);
+		Invoke ("ASituationIsCritical", plotTimer);
+	}
+
+	public void ASituationIsCritical(){
+		plotTimer = 11.4f;
+		DisplayText (31, 20);
+		Invoke ("ButWhatIsIt", plotTimer);
+	}
+
+	public void ButWhatIsIt() {
+		plotTimer = 7f;
+		DisplayText (32, 20);
+		Invoke ("AnswersAreNot", plotTimer);
+	}
+
+	public void AnswersAreNot() {
+		plotTimer = 8.4f;
+		DisplayText (33, 20);
+		Invoke ("IsHeMad", plotTimer);
+	}
+
+	public void IsHeMad() {
+		plotTimer = 3f;
+		DisplayText (34, 20);
+		Invoke ("IsThereAReason", plotTimer);
+	}
+
+	public void IsThereAReason() {
+		plotTimer = 4f;
+		DisplayText (35, 20);
+		Invoke ("IsThere", plotTimer);
+	}
+
+	public void IsThere() {
+		plotTimer = 3f;
+		DisplayText (36, 20);
+		Invoke ("ThereIsOrThereIsNot", plotTimer);
+	}
+
+	public void ThereIsOrThereIsNot() {
+		GameObject instantiatedChoice = Instantiate(choices);
+		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
+		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(5);
+		bridgeOrLabs.nextPlotSteps = 3;
+
+		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
+	}
+
+	public void ThereIs() {
+		WhereAreWe ();
+	}
+
+	public void ThereIsNot() {
+		Debug.Log ("EUREKA");
+	}
+
+
+
 	public void Labs() {
 		Destroy(GameObject.Find("Corridor(Clone)"));
 		plotTimer = 10f;
@@ -188,7 +255,7 @@ public class SpacePlot : MonoBehaviour {
 	public void RunOrFaceHim() {
 		GameObject instantiatedChoice = Instantiate(choices);
 		ChoicesBehaviour bridgeOrLabs = instantiatedChoice.GetComponent<ChoicesBehaviour>();
-		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(5);
+		bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(6);
 		bridgeOrLabs.nextPlotSteps = 1;
 
 		instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
