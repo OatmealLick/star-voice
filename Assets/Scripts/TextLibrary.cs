@@ -37,11 +37,11 @@ public class TextLibrary : MonoBehaviour {
         script.Add("* Stars… are we… in space?*");//26
         script.Add("-Ekhem! ");//27
         script.Add("A man is standing in front of a big screen with thousands of symbols.");//28
-        script.Add("-I don’t know if you are aware, but we are under an ongoing situation. A critical situation.");//29
-        script.Add("Where are we?! Why I am here? What’s the situation?!");//30
-        script.Add("A situation is critical and certain procedures must be executed. Thankfully, we’ve got a procedure for every situation in here. Every. Situation");//31
-        script.Add("But what is it? Who am I? Can you answer me?");//32
-        script.Add("Answers are not a part of currently executed procedure. It must be finished first.");//33
+        script.Add("- I don’t know if you are aware, but we are under an ongoing situation. A critical situation.");//29
+        script.Add("- Where are we?! Why I am here? What’s the situation?!");//30
+        script.Add("- A situation is critical and certain procedures must be executed. Thankfully, we’ve got a procedure for every situation in here. Every. Situation");//31
+        script.Add("- But what is it? Who am I? Can you answer me?");//32
+        script.Add("- Answers are not a part of currently executed procedure. It must be finished first.");//33
         script.Add("*Is he mad?*");//34
         script.Add("*Is there a reason to even talk to him?*");//35
         script.Add("*Is there?*");//36
@@ -57,10 +57,10 @@ public class TextLibrary : MonoBehaviour {
 		script.Add("You run into the cell at the last second. You slam the door behind you. You hear him charging at the door head first again and again. Suddenly you hear a crunch and everything goes silent. You feel sick.");//46
 		script.Add("You hear a silent wheeze behind you. You turn around to see a man curled up on the floor. You see extensive wounds all over his body.");//47
 		script.Add("- It can’t be happening... We were meant to see what’s beyond..."); //48
-		script.Add("Beyond what? What’s going on in here?"); //49
+		script.Add("- Beyond what? What’s going on in here?"); //49
 		script.Add("- We were prepared so well, but we never expected this…"); //50
-		script.Add("What are you talking about?"); //51
-		script.Add("Aah... the sun... I can feel the sun caressing my skin... The waves are taking me away..."); //52
+		script.Add("- What are you talking about?"); //51
+		script.Add("- Aah... the sun... I can feel the sun caressing my skin... The waves are taking me away..."); //52
 		script.Add("*Why did I kill him? Did he attack first? What’s going on with my mind?!*");//53
         script.Add("You pass by the body of the commander and walk up to the screen that was behind him. ");//54
         script.Add("*Just a little hint…. I need to know! *");//55
@@ -80,7 +80,7 @@ public class TextLibrary : MonoBehaviour {
 		script.Add ("What are you talking about?");//69
 		script.Add ("-Aah… The sun… I can feel the sun caressing my skin… The waves are taking me away…");//70
 		script.Add ("He breathes his last breath and an unobtrusive smile shines upon his face. Your chance to understand any of this fades away. Then you hear familiar sound:");//71
-		script.Add ("You decide to visit labs hoping to find any answer.");//72
+		script.Add ("You decide to visit bridge hoping to find any answer.");//72
 
 
     }

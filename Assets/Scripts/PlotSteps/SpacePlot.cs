@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpacePlot : MonoBehaviour {
 	public static bool bridgeVisited = false;
@@ -248,7 +249,7 @@ public class SpacePlot : MonoBehaviour {
         GameObject knifeImage = Instantiate(knife);
         knifeImage.transform.SetParent(renderCanvas.transform, false);
         musicManager.GetComponent<MusicManager>().Fight();
-        GameObject system = Instantiate(fightSystem);
+        GameObject system = Instantiate((GameObject)Resources.Load("FightCommanderListener"));
         system.transform.SetAsFirstSibling();
         FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
         fightListener.attackCount = 10;
@@ -330,7 +331,7 @@ public class SpacePlot : MonoBehaviour {
 		if (!labsVisited)
 			Invoke ("MaybeTheLabs", plotTimer);
 		else {
-			//TODO
+            SceneManager.LoadScene("End");
 		}
     }
     public void MaybeTheLabs()
@@ -471,12 +472,13 @@ public class SpacePlot : MonoBehaviour {
 	public void HeBreathes() {
 		plotTimer = 23f;
 		DisplayUpperText(71, 10);
+        Destroy(GameObject.Find("Sun(Clone)"));
 		if (!bridgeVisited) {
 			Invoke ("SpeakerAgain", plotTimer);
 		} else {
-			//TODO end
-		}
-	}
+            SceneManager.LoadScene("End");
+        }
+    }
 
 	public void SpeakerAgain() {
 		spaceshipPlayer.Speaker ();
