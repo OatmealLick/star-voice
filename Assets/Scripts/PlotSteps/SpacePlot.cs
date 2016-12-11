@@ -394,6 +394,49 @@ public class SpacePlot : MonoBehaviour {
 		Run ();
 	}
 
+	//TODO HOW TO GET HERE
+	public void YouReachTheCell() {
+		plotTimer = 16f;
+		DisplayText(64, 20);
+		Invoke ("YouHereASilentWeeze", plotTimer);
+	}
+
+	public void YouHereASilentWeeze() {
+		plotTimer = 12f;
+		DisplayText(65, 20);
+		Invoke ("ItCantBeHappening", plotTimer);
+	}
+
+	public void ItCantBeHappening() {
+		plotTimer = 12f;
+		DisplayText(66, 10);
+		Invoke ("BeyondWhat", plotTimer);
+	}
+
+	public void BeyondWhat() {
+		plotTimer = 6.5f;
+		DisplayText(67, 24);
+		Invoke ("WePreparedWell", plotTimer);
+	}
+
+	public void WePreparedWell() {
+		plotTimer = 10f;
+		DisplayText(68, 10);
+		Invoke ("WhatAreYouTalkingAbout", plotTimer);
+	}
+
+	public void WhatAreYouTalkingAbout() {
+		plotTimer = 5f;
+		DisplayText(69, 27);
+		Invoke ("TheSun", plotTimer);
+	}
+
+	public void TheSun() {
+		plotTimer = 23f;
+		DisplayText(70, 10);
+		//Invoke ("RunOrFaceHim", plotTimer);
+	}
+
 
     // Update is called once per frame
     void Update () {
