@@ -26,6 +26,36 @@ public class SpaceshipPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Stars"), 1);
     }
+    public void Dialog(string n)
+    {
+        if (n == "1") source.PlayOneShot((AudioClip)Resources.Load("Dialog1"), 1);
+        if (n == "2a") source.PlayOneShot((AudioClip)Resources.Load("Dialog2a"), 1);
+        if (n == "2b") source.PlayOneShot((AudioClip)Resources.Load("Dialog2b"), 1);
+        if (n == "3") source.PlayOneShot((AudioClip)Resources.Load("Dialog3"), 1);
+        if (n == "4a") source.PlayOneShot((AudioClip)Resources.Load("Dialog4a"), 1);
+        if (n == "4b") source.PlayOneShot((AudioClip)Resources.Load("Dialog4b"), 1);
+        if (n == "5") source.PlayOneShot((AudioClip)Resources.Load("Dialog5"), 1);
+    }
+    public void IsHeMad()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Is_he_mad"), 1);
+    }
+    public void IsThereReason()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Kill_him"), 1);
+    }
+    public void IsThere()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Is_there"), 1);
+    }
+    public void OfCourse()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Of_course"), 1);
+    }
+    public void HumanBeing()
+    {
+        source.PlayOneShot((AudioClip)Resources.Load("Human_being"), 1);
+    }
 
     // Update is called once per frame
     void Update () {
