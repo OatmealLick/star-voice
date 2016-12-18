@@ -53,7 +53,7 @@ public class PlotAct2 : Plot
             spacePlot.CommanderAgain();
             break;
         case 9:
-                spacePlot.WonWithCommander();
+                spacePlot.WonWithCommanderPlotVersion();
                 break;
 		case 10:
 			spacePlot.YouReachTheCell ();

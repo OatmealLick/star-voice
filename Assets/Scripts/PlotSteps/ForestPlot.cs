@@ -19,7 +19,7 @@ public class ForestPlot : MonoBehaviour {
     public ChoiceLibrary choiceLibrary;
     public GameObject choices;
 	public GameObject background;
-    public GameObject fightSystem;
+    private GameObject fightSystem;
     public GameObject bear;
     public GameObject musicManager;
     public GameObject wood;

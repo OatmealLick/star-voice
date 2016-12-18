@@ -87,18 +87,22 @@ public class FightManager : MonoBehaviour
 		else
 			Invoke ("EnableFighting", delay);
 
+
+
 		// properly attach opponent and weapon GameObjects to correct Canvas
 		// this double Canvas technic avoids UI being overlapped by background images
 		Transform renderCanvasTr = GameObject.Find ("SecondCanvas").transform;
-		opponent.transform.SetParent (renderCanvasTr, false);
-		weapon.transform.SetParent (renderCanvasTr, false);
+		if(opponent!= null)
+			opponent.transform.SetParent (renderCanvasTr, false);
+		if (weapon != null) {
+			weapon.transform.SetParent (renderCanvasTr, false);
+
+			// obtain Animator from passed weapon
+			weaponAnimator = weapon.GetComponent<Animator> ();
+		}
 
 		// obtain AudioSource from the Scene
 		audioPlayer = GameObject.Find("AudioSource").GetComponent<AudioPlayer> ();
-
-
-		// obtain Animator from passed weapon
-		weaponAnimator = weapon.GetComponent<Animator> ();
 	}
 
 	// Update is called once per frame
@@ -135,8 +139,12 @@ public class FightManager : MonoBehaviour
 		Debug.Log ("FightManager - won single fight");
 		fightInProgress = false;
 		--hitsToKill;
-		weaponAnimator.SetTrigger ("Attack");
-		audioPlayer.PlayOneShotWithArguments (youHit, youHitTimes);
+
+		if(weaponAnimator!=null)
+			weaponAnimator.SetTrigger ("Attack");
+
+		if(youHit!=null)
+			audioPlayer.PlayOneShotWithArguments (youHit, youHitTimes);
 
 		if (hitsToKill <= 0) {
 			// you killed your opponent, won the whole battle
@@ -149,9 +157,12 @@ public class FightManager : MonoBehaviour
 		Debug.Log ("FightManager - lost single fight");
 		fightInProgress = false;
 		--hitsToDie;
-		weaponAnimator.SetTrigger ("BearAttack");
-		audioPlayer.PlayOneShotWithArguments (opponentHit, opponentHitTimes);
-		//WoodController.Pac(); // do zmiany Łukaszku
+
+		if(weaponAnimator!=null)
+			weaponAnimator.SetTrigger ("OpponentAttack");
+
+		if(opponentHit!=null)
+			audioPlayer.PlayOneShotWithArguments (opponentHit, opponentHitTimes);
 
 		if (hitsToDie <= 0) {
 			// you died, lost whole battle
