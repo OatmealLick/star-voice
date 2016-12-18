@@ -212,34 +212,43 @@ public class ForestPlot : MonoBehaviour {
 
     public void FightStart(){
 		FightManager.WonBattle += WonWithBear;
-        GameObject bearImage = Instantiate(bear);
-        bear.transform.SetAsFirstSibling();
-        bearImage.transform.SetParent(renderCanvas.transform, false);
+		FightManager.LostBattle += LostWithBear;
+        
         musicManager.GetComponent<MusicManager>().Fight();
-        GameObject woodImage = Instantiate(wood);
-        woodImage.transform.SetParent(renderCanvas.transform, false);
+        
         GameObject system = Instantiate(fightSystem);
         system.transform.SetAsFirstSibling();
-		FightManager fightListener = system.GetComponent<FightManager>();
-		fightListener.attackCount = 10;
-		fightListener.health = 4;
-        fightListener.delay = 1;
-		fightListener.delaySingleFightInstance = 2.3f;
-		fightListener.hitsToKill = 5;
-		fightListener.timeForAttack = 1.2f;
-
+		FightManager fightManager = system.GetComponent<FightManager>();
+		fightManager.hitsToKill = 5;
+		fightManager.hitsToDie = 2;
+        fightManager.delay = 1;
+		fightManager.offsetBetweenSingleFights = 0.3f;
+		fightManager.attackSpeedInSeconds = 1.8f;
+		fightManager.opponent = Instantiate (bear);
+		fightManager.weapon = Instantiate (wood);
+		fightManager.youHit = (AudioClip)Resources.Load ("Torch_attack");
+		fightManager.youHitTimes = 2;
     }
-    //    // Update is called once per frame
-    //    void Update () {
-    //        plotTimer -= Time.deltaTime;
-    //        if (plotTimer < 0){
-    //            GetComponent<Plot>().CallPlotStep(++currentStep); //calling next step (from Plot)
-    //        }
-    //	}
+    
 	public void WonWithBear() {
 		Debug.Log ("ForestPlot - Won whole battle with the bear");
 		FightManager.WonBattle -= WonWithBear;
 	}
-}
 
-//TODO: usuwanie niepotrzebnych textów
+	public void LostWithBear() {
+		Debug.Log ("ForestPlot - Lost whole battle with the bear");
+		FightManager.LostBattle -= LostWithBear;
+		// Invoke this below
+		Invoke("Invoker", 3.5f);
+	}
+
+	private void Invoker() {
+		//TODO: smart fix to destroy automatically end screens
+
+		// this GameObject will be always called like this
+		// see: FightManager#LostTheWholeBattle
+		Destroy(GameObject.Find ("TheEnd"));
+
+		plot.NextStep (1, 6);
+	}
+}

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipPlayer : MonoBehaviour {
+public class SpaceshipPlayer : AudioPlayer {
 
-    AudioSource source;
-    // Use this for initialization
+ 
     void Start()
     {
         source = GetComponent<AudioSource>();

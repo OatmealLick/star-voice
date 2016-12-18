@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForestPlayer : MonoBehaviour {
+public class ForestPlayer : AudioPlayer {
 
-    AudioSource source;
-    // Use this for initialization
-    void Start () {
-        source = GetComponent<AudioSource>();
-        Forest();
-    }
+	public void Start() {
+		source = GetComponent<AudioSource>();
+		Forest ();
+	}
 
     public void Forest(){
 		source.clip = (AudioClip)Resources.Load("forest");
@@ -69,6 +67,11 @@ public class ForestPlayer : MonoBehaviour {
     {
         source.PlayOneShot((AudioClip)Resources.Load("Bear_attack"), 1);
     }
+
+//	public override void PlayOneShotWithArguments(AudioClip clip, int times) {
+//		source.PlayOneShot (clip, times);
+//	}
+
     // Update is called once per frame
     void Update () {
 		
