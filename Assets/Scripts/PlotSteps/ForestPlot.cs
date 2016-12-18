@@ -29,6 +29,7 @@ public class ForestPlot : MonoBehaviour {
         renderCanvas = (Canvas)GameObject.Find("SecondCanvas").GetComponent<Canvas>();
 		defaultText = (GameObject)Resources.Load ("DefaultText");
         upperText = (GameObject)Resources.Load("UpperText");
+		fightSystem = (GameObject)Resources.Load ("FightManager");
         textLibrary = scriptManager.GetComponent<TextLibrary>();
         choiceLibrary = scriptManager.GetComponent<ChoiceLibrary>();
 	}
@@ -210,6 +211,7 @@ public class ForestPlot : MonoBehaviour {
     }
 
     public void FightStart(){
+		FightManager.WonBattle += WonWithBear;
         GameObject bearImage = Instantiate(bear);
         bear.transform.SetAsFirstSibling();
         bearImage.transform.SetParent(renderCanvas.transform, false);
@@ -218,7 +220,7 @@ public class ForestPlot : MonoBehaviour {
         woodImage.transform.SetParent(renderCanvas.transform, false);
         GameObject system = Instantiate(fightSystem);
         system.transform.SetAsFirstSibling();
-        FightResultEventListener fightListener = system.GetComponent<FightResultEventListener>();
+		FightManager fightListener = system.GetComponent<FightManager>();
 		fightListener.attackCount = 10;
 		fightListener.health = 4;
         fightListener.delay = 1;
@@ -234,6 +236,10 @@ public class ForestPlot : MonoBehaviour {
     //            GetComponent<Plot>().CallPlotStep(++currentStep); //calling next step (from Plot)
     //        }
     //	}
+	public void WonWithBear() {
+		Debug.Log ("ForestPlot - Won whole battle with the bear");
+		FightManager.WonBattle -= WonWithBear;
+	}
 }
 
 //TODO: usuwanie niepotrzebnych textów
