@@ -137,8 +137,6 @@ public class FightManager : MonoBehaviour
 		--hitsToKill;
 		weaponAnimator.SetTrigger ("Attack");
 		audioPlayer.PlayOneShotWithArguments (youHit, youHitTimes);
-		//WoodController.AttackWithWood(); // do zmiany Łukaszku
-
 
 		if (hitsToKill <= 0) {
 			// you killed your opponent, won the whole battle
@@ -151,8 +149,9 @@ public class FightManager : MonoBehaviour
 		Debug.Log ("FightManager - lost single fight");
 		fightInProgress = false;
 		--hitsToDie;
-		WoodController.Pac(); // do zmiany Łukaszku
-
+		weaponAnimator.SetTrigger ("BearAttack");
+		audioPlayer.PlayOneShotWithArguments (opponentHit, opponentHitTimes);
+		//WoodController.Pac(); // do zmiany Łukaszku
 
 		if (hitsToDie <= 0) {
 			// you died, lost whole battle

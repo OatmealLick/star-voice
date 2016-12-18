@@ -222,21 +222,24 @@ public class ForestPlot : MonoBehaviour {
 		fightManager.hitsToKill = 5;
 		fightManager.hitsToDie = 2;
         fightManager.delay = 1;
-		fightManager.offsetBetweenSingleFights = 0.3f;
+		fightManager.offsetBetweenSingleFights = 1.3f;
 		fightManager.attackSpeedInSeconds = 1.8f;
 		fightManager.opponent = Instantiate (bear);
 		fightManager.weapon = Instantiate (wood);
 		fightManager.youHit = (AudioClip)Resources.Load ("Torch_attack");
 		fightManager.youHitTimes = 2;
+		fightManager.opponentHit = (AudioClip)Resources.Load ("Bear_attack");
     }
     
 	public void WonWithBear() {
 		Debug.Log ("ForestPlot - Won whole battle with the bear");
 		FightManager.WonBattle -= WonWithBear;
+		FightManager.LostBattle -= LostWithBear;
 	}
 
 	public void LostWithBear() {
 		Debug.Log ("ForestPlot - Lost whole battle with the bear");
+		FightManager.WonBattle -= WonWithBear;
 		FightManager.LostBattle -= LostWithBear;
 		// Invoke this below
 		Invoke("Invoker", 3.5f);
