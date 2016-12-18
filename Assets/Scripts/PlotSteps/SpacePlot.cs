@@ -21,17 +21,20 @@ public class SpacePlot : MonoBehaviour {
     public ChoiceLibrary choiceLibrary;
     public GameObject choices;
     public GameObject background;
-    public GameObject fightSystem;
+    private GameObject fightSystem;
     public GameObject bg;
     public GameObject knife;
     public GameObject musicManager;
+	public GameObject commander;
     // Use this for initialization
     void Awake()
     {
+		plot = GameObject.Find ("PlotHandler").GetComponent<Plot> ();
 		bgCanvas = (Canvas)GameObject.Find("Canvas").GetComponent<Canvas>();
 		renderCanvas = (Canvas)GameObject.Find("SecondCanvas").GetComponent<Canvas>();
         defaultText = (GameObject)Resources.Load("DefaultText");
         upperText = (GameObject)Resources.Load("UpperText");
+		fightSystem = (GameObject)Resources.Load ("FightManager");
         textLibrary = scriptManager.GetComponent<TextLibrary>();
         choiceLibrary = scriptManager.GetComponent<ChoiceLibrary>();
     }
@@ -156,8 +159,8 @@ public class SpacePlot : MonoBehaviour {
 	}
     public void ShowCommander()
 	{
-		GameObject corridor = (GameObject)Instantiate (Resources.Load ("Commander"));
-		corridor.transform.SetParent (bgCanvas.transform, false);
+		commander = (GameObject)Instantiate (Resources.Load ("Commander"));
+		commander.transform.SetParent (bgCanvas.transform, false);
 	}
 	public void IDontKnowIfYoureAware() {
         spaceshipPlayer.Dialog("1");
@@ -246,21 +249,52 @@ public class SpacePlot : MonoBehaviour {
     }
     public void CommanderFight()
     {
-        GameObject knifeImage = Instantiate(knife);
-        knifeImage.transform.SetParent(renderCanvas.transform, false);
-        musicManager.GetComponent<MusicManager>().Fight();
-        GameObject system = Instantiate((GameObject)Resources.Load("FightCommanderListener"));
-        system.transform.SetAsFirstSibling();
-        FightResultEventListenerCommander fightListener = system.GetComponent<FightResultEventListenerCommander>();
-        fightListener.attackCount = 10;
-        fightListener.health = 1;
-        fightListener.delay = 1;
-        fightListener.delaySingleFightInstance = 2.3f;
-        fightListener.hitsToKill = 5;
-        fightListener.timeForAttack = 1f;
+		FightManager.WonBattle += WonWithCommander;
+		FightManager.LostBattle += LostWithCommander;
+
+		musicManager.GetComponent<MusicManager>().Fight();
+
+		GameObject system = Instantiate(fightSystem);
+		system.transform.SetAsFirstSibling();
+		FightManager fightManager = system.GetComponent<FightManager>();
+		fightManager.hitsToKill = 5;
+		fightManager.hitsToDie = 2;
+		fightManager.delay = 1;
+		fightManager.offsetBetweenSingleFights = 1.3f;
+		fightManager.attackSpeedInSeconds = 1.8f;
+		fightManager.opponent = commander;
+		fightManager.weapon = Instantiate (knife);
+		fightManager.youHit = (AudioClip)Resources.Load("Bear_attack");
+		//fightManager.opponentHit = (AudioClip)Resources.Load ("Bear_attack");
     }
 
-    public void WonWithCommander()
+	public void WonWithCommander() {
+		Debug.Log ("ForestPlot - Won whole battle with the Commander");
+		FightManager.WonBattle -= WonWithCommander;
+		FightManager.LostBattle -= LostWithCommander;
+		plot.NextStep (1, 8);
+	}
+
+	public void LostWithCommander() {
+		Debug.Log ("ForestPlot - Lost whole battle with the Commander");
+		FightManager.WonBattle -= WonWithCommander;
+		FightManager.LostBattle -= LostWithCommander;
+		// Invoke this below
+		Invoke("Invoker", 3.5f);
+
+	}
+
+	private void Invoker() {
+		//TODO: smart fix to destroy automatically end screens
+
+		// this GameObject will be always called like this
+		// see: FightManager#LostTheWholeBattle
+		Destroy(GameObject.Find ("TheEnd"));
+
+		plot.NextStep (1, 7);
+	}
+
+    public void WonWithCommanderPlotVersion()
     {
         spaceshipPlayer.DidIKillHim();
         musicManager.GetComponent<MusicManager>().Bridge();
@@ -399,16 +433,56 @@ public class SpacePlot : MonoBehaviour {
 	}
 
 	public void Run() {
+		FightManager.WonBattle += RanFromHim;
+		FightManager.LostBattle += DidntRun;
+
 		musicManager.GetComponent<MusicManager>().Fight();
-		fightSystem = (GameObject) Resources.Load ("RUN_FIGHT_LISTENER");
+
 		GameObject system = Instantiate(fightSystem);
 		system.transform.SetAsFirstSibling();
-		FightResultEventListenerRunning fightListener = system.GetComponent<FightResultEventListenerRunning>();
-		fightListener.attackCount = 10;
-		fightListener.health = 2;
-		fightListener.delaySingleFightInstance = 1.3f;
-		fightListener.hitsToKill = 6;
-		fightListener.timeForAttack = 0.8f;
+		FightManager fightManager = system.GetComponent<FightManager>();
+		fightManager.hitsToKill = 2;
+		fightManager.hitsToDie = 2;
+		fightManager.delay = 1;
+		fightManager.offsetBetweenSingleFights = 1.3f;
+		fightManager.attackSpeedInSeconds = 1.8f;
+		fightManager.endPrefab = (GameObject) Resources.Load ("Ralik");
+		//fightManager.opponent = commander;
+		//fightManager.weapon = Instantiate (knife);
+		//fightManager.youHit = (AudioClip)Resources.Load("Bear_attack");
+		//fightManager.opponentHit = (AudioClip)Resources.Load ("Bear_attack");
+	}
+
+	public void RanFromHim() {
+		Debug.Log ("ForestPlot - Won whole battle with the Commander");
+		FightManager.WonBattle -= RanFromHim;
+		FightManager.LostBattle -= DidntRun;
+		plot.NextStep (1, 9);
+	}
+
+	public void DidntRun() {
+		Debug.Log ("ForestPlot - Lost whole battle with the Commander");
+		FightManager.WonBattle -= RanFromHim;
+		FightManager.LostBattle -= DidntRun;
+		GameObject.Find("AudioSource").GetComponent<SpaceshipPlayer>().Scream();
+		// Invoke this below
+		Invoke("Invoker2", 3.5f);
+
+	}
+
+	private void Invoker2() {
+		//TODO: smart fix to destroy automatically end screens
+
+		// this GameObject will be always called like this
+		// see: FightManager#LostTheWholeBattle
+		Destroy(GameObject.Find ("TheEnd"));
+
+//		GameObject ralik = (GameObject)Instantiate(Resources.Load("Ralik"));
+//		ralik.transform.SetAsFirstSibling();
+//		ralik.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+
+
+		plot.NextStep (1, 6);
 	}
 
 	public void FaceHim() {
