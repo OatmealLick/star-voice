@@ -45,7 +45,7 @@ public class SpacePlot : MonoBehaviour {
     {
         GameObject textParent = Instantiate(defaultText, new Vector3(0, 0), transform.rotation);
         TextAppear displayText = textParent.GetComponentInChildren<TextAppear>();
-        displayText.readerSpeed = readerSpeed;
+        displayText.textDisplaySpeed = readerSpeed;
         textParent.transform.SetParent(renderCanvas.transform, false);
         displayText.SetText(textLibrary.GetLine(lineNumber));
     }
@@ -53,7 +53,7 @@ public class SpacePlot : MonoBehaviour {
     {
         GameObject textParent = Instantiate(upperText);
         TextAppear displayText = textParent.GetComponentInChildren<TextAppear>();
-        displayText.readerSpeed = readerSpeed;
+        displayText.textDisplaySpeed = readerSpeed;
         textParent.transform.SetParent(renderCanvas.transform, false);
         displayText.SetText(textLibrary.GetLine(lineNumber));
         textParent.transform.SetAsFirstSibling();
