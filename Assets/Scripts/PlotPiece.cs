@@ -2,18 +2,13 @@
 using UnityEngine;
 	
 public class PlotPiece {
-	//TODO add text position
 
-	// 0 for staying forever - choices
-	//public float pieceDisplayTime = 0f; 
+	public TextPosition textPosition = TextPosition.CENTER;
 
 	// if Length > 1, it's a choice PlotPiece
 	public string[] texts;
 
 	public TextAppear.TextSpeed speakerSpeed = TextAppear.TextSpeed.NORMAL;
-
-	// ~characters per second
-	//public float textDisplaySpeed = 13;
 
 	public GameObject background;
 
