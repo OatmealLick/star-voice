@@ -8,11 +8,24 @@ public class PlotPiece {
 	// if Length > 1, it's a choice PlotPiece
 	public string[] texts;
 
-	public TextAppear.TextSpeed speakerSpeed = TextAppear.TextSpeed.NORMAL;
+	public TextSpeed speakerSpeed = TextSpeed.NORMAL;
 
 	public GameObject background;
 
-	public bool keepOldBackground = false;
+	public bool keepOldBackground = true;
+
+	// AudioClips respectively to AudioSources in PlotHandler
+	public AudioClip backgroundClip;
+	public bool keepOldBackgroundClip = true;
+	public float bacgroundClipVolume = 1f;
+
+	public AudioClip eventClip;
+	public float eventClipDelay = 0f;
+	public float eventClipVolume = 1f;
+
+	public AudioClip spareClip;
+	public float spareClipDelay = 0f;
+	public float spareClipVolume = 1f;
 
 	public PlotPiece (string text) {
 		texts = new string[] { text };

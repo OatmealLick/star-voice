@@ -16,7 +16,7 @@ public class TextLibrary : MonoBehaviour {
         script.Add("* A campfire? Who may it be ? *"); //5
         script.Add("You headed out into the darkness. At first you thought your confused mind is playing tricks on you, but then you were sure. There was a campfire somewhere in there."); //6
         script.Add("You approach the fire. It’s slowly dying down, but you are sure that somebody was here not a long time ago."); //7
-        script.Add("*Finally some warmth, I was freezing..."); //8
+        script.Add("* Finally some warmth, I was freezing... *"); //8
         script.Add("Once you sat by the fire and calmed down your mind flooded with adrenaline, you began to realise what is going on."); //9
         script.Add("*I’m all alone in this dark forest. I can’t recall anything from my past. Everything is spinning. I feel dizzy.*"); //10
         script.Add("You are immersed in your thoughts.");//11

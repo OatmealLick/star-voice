@@ -21,10 +21,6 @@ public class TextAppear : MonoBehaviour {
 	public const float TIME_TO_STAY_NORMAL = 2.5f;
 	public const float TIME_TO_STAY_LOW = 2.6f;
 
-	public enum TextSpeed {
-		LOW, NORMAL, HIGH
-	};
-
 	// THIS IS GLOBAL SETTING GAMER SETS UP IN OPTIONS
 	// IT IS TO BE CHANGED ONLY VIA OPTIONS AND HAVE IMPACT ON EVERY SIGNLE
 	// TEXT DISPLAYED IN GAME

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class PlotHandler : MonoBehaviour
 {
 	public List<PlotPiece> plotList = new List<PlotPiece> ();
-	public IEnumerator it;
+	public int iterator = 0;
 
 	// Background image Canvas
 	private Transform backgroundCanvasTr;
@@ -19,16 +19,26 @@ public class PlotHandler : MonoBehaviour
 	private GameObject defaultText;
 
 	// for now this is how it looks like
+	// used to pass methods specified in Act?Plot to call them when choice is clicked
 	public ChoicesBehaviour.ChoiceCallbacks[] choiceCallbacks;
 
 	// prefab to instantiate choices from
 	public GameObject choices;
 
+
+	// for background soundtrack
+	// for every PlayOneShot event, e.g. someone speaks or screams
+	public AudioSource audioSource;
+	private AudioClip eventClip;
+	private AudioClip spareClip;
+	private float eventClipVolume;
+	private float spareClipVolume;
+
 	private TextAppear currentTextAppear;
 
-	private bool isDisplaying = false;
+	public bool isDisplaying = false;
 
-	public void DisplayText(string text, TextAppear.TextSpeed speakerSpeed, TextPosition pos) {
+	public void DisplayText(string text, TextSpeed speakerSpeed, TextPosition pos) {
 		GameObject textParent = Instantiate(defaultText);
 
 		currentTextAppear = textParent.GetComponentInChildren<TextAppear>();
@@ -56,7 +66,6 @@ public class PlotHandler : MonoBehaviour
 		backgroundCanvasTr = GameObject.Find ("Canvas").transform;
 		renderCanvasTr = GameObject.Find ("SecondCanvas").transform;
 		defaultText = (GameObject)Resources.Load("DefaultText");
-		it = plotList.GetEnumerator ();
 	}
 	
 	void Update () {
@@ -74,34 +83,36 @@ public class PlotHandler : MonoBehaviour
 			isDisplaying = false;
 		}
 
-		if (!isDisplaying && it.MoveNext()) {
+		if (!isDisplaying && plotList.Count > iterator) {
 			isDisplaying = true;
-			PlotPiece pp = (PlotPiece)it.Current;
+			PlotPiece pp = (PlotPiece)plotList[iterator++];
 
 			if (pp.isChoice ()) {
-				// TODO real work
+				
+				// This is where each choice PlotPiece is handled
 				GameObject instantiatedChoice = Instantiate(choices);
 				instantiatedChoice.transform.SetParent (renderCanvasTr, false);
 				ChoicesBehaviour cb = instantiatedChoice.GetComponent<ChoicesBehaviour>();
 				cb.choiceTexts = pp.texts;
 				cb.SetChoiceCallbacks (choiceCallbacks);
-				//bridgeOrLabs.choiceTexts = choiceLibrary.GetChoice(4);
-				//bridgeOrLabs.nextPlotSteps = 1;
 
 
 
 				//instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
 			} else {
+
+				// This is where each nonchoice PlotPiece is handled
+
 				DisplayText (pp.texts[0], pp.speakerSpeed, pp.textPosition);
 
 				float timeOffset;
 
 				switch (pp.speakerSpeed) {
-				case TextAppear.TextSpeed.HIGH:
+				case TextSpeed.HIGH:
 					timeOffset = ((TextAppear.SINGLE_CHAR_OFFSET_HIGH + 0.0145f) * pp.texts [0].Length)
 						+ TextAppear.TIME_TO_STAY_HIGH;
 					break;
-				case TextAppear.TextSpeed.NORMAL:
+				case TextSpeed.NORMAL:
 					timeOffset = ((TextAppear.SINGLE_CHAR_OFFSET_NORMAL + 0.0145f) * pp.texts [0].Length)
 						+ TextAppear.TIME_TO_STAY_NORMAL;
 					break;
@@ -110,40 +121,82 @@ public class PlotHandler : MonoBehaviour
 						+ TextAppear.TIME_TO_STAY_LOW;
 					break;
 				}
-
-				if (!pp.keepOldBackground) {
-					if (backgroundCanvasTr.childCount > 0) {
-						// I suspect that if childCount is nonzero there is only ONE child
-						Destroy (backgroundCanvasTr.GetChild (0).gameObject);
-					}
-				}
-
-				if (pp.background != null) {
-					GameObject newBackground = (GameObject) Instantiate(pp.background);
-					newBackground.transform.SetParent(backgroundCanvasTr, false);
-				}
 					
 				Invoke ("DoneDisplaying", timeOffset);
 			}
+
+			// both for choice and nonchoice Pieces
+
+			// image handling
+			if (!pp.keepOldBackground) {
+				if (backgroundCanvasTr.childCount > 0) {
+					// I suspect that if childCount is nonzero there is only ONE child
+					Destroy (backgroundCanvasTr.GetChild (0).gameObject);
+				}
+			}
+
+			if (pp.background != null) {
+				GameObject newBackground = (GameObject) Instantiate(pp.background);
+				newBackground.transform.SetParent(backgroundCanvasTr, false);
+			}
+
+			// audio handling
+			if (!pp.keepOldBackgroundClip && audioSource.isPlaying)
+				audioSource.Stop ();
+
+			if (pp.backgroundClip != null) {
+				audioSource.clip = pp.backgroundClip;
+				audioSource.volume = pp.bacgroundClipVolume;
+				audioSource.Play ();
+			}
+
+			if (pp.eventClip != null && Mathf.Abs (pp.eventClipDelay) < .0001f) {
+				audioSource.PlayOneShot (pp.eventClip);
+			} else if (pp.eventClip != null) {
+				eventClip = pp.eventClip;
+				eventClipVolume = pp.eventClipVolume;
+				Invoke ("PlayOneShotDelayedEvent", pp.eventClipDelay);
+			}
+
+			if (pp.spareClip != null && Mathf.Abs (pp.spareClipDelay) < .0001f) {
+				audioSource.PlayOneShot (pp.spareClip);
+			} else if (pp.spareClip != null) {
+				spareClip = pp.spareClip;
+				spareClipVolume = pp.spareClipVolume;
+				Invoke ("PlayOneShotDelayedSpare", pp.spareClipDelay);
+			}
+
 		}
 	}
 
+	// Change bool to false so Update can display another piece
 	private void DoneDisplaying() {
 		isDisplaying = false;
 	}
 
+	// Add piece to the queue
 	public void Add(PlotPiece piece) {
 		plotList.Add (piece);
 	}
 
+	// Add choice piece to the queue
 	public void Add(PlotPiece piece, ChoicesBehaviour.ChoiceCallbacks[] choiceCallbacks) {
 		Add (piece);
 		this.choiceCallbacks = choiceCallbacks;
 	}
 
+	// Called when you're done with the text
 	private void DestroyText() {
 		isDisplaying = false;
 		Destroy(currentTextAppear.transform.parent.gameObject);
+	}
+
+	private void PlayOneShotDelayedEvent() {
+		audioSource.PlayOneShot (eventClip, eventClipVolume);
+	}
+
+	private void PlayOneShotDelayedSpare() {
+		audioSource.PlayOneShot (spareClip, spareClipVolume);
 	}
 }
 

@@ -43,15 +43,12 @@ public class FightManager : MonoBehaviour
 	// single Fight instance prefab
 	private GameObject fightPrefab;
 
-	// base class for Players in this game
-	// every player needs to extend this class
-	private AudioPlayer audioPlayer;
+	// AudioSource from PlotMachine
+	private AudioSource audioSource;
 
 	// sound data for attacks
 	public AudioClip youHit;
-	public int youHitTimes = 1;
 	public AudioClip opponentHit;
-	public int opponentHitTimes = 1;
 
 
 	// these below are used to pass info about winner back to calling Plot with 
@@ -101,8 +98,14 @@ public class FightManager : MonoBehaviour
 			weaponAnimator = weapon.GetComponent<Animator> ();
 		}
 
-		// obtain AudioSource from the Scene
-		audioPlayer = GameObject.Find("AudioSource").GetComponent<AudioPlayer> ();
+		// obtain AudioSource from the Scene and play Fight!
+		audioSource = GameObject.Find("PlotMachine").GetComponent<AudioSource> ();
+		AudioClip fight = (AudioClip)Resources.Load ("fight!");
+		if (audioSource.clip != fight || !audioSource.isPlaying) {
+			audioSource.clip = fight;
+			audioSource.volume = 0.6f;
+			audioSource.Play ();
+		}
 	}
 
 	// Update is called once per frame
@@ -143,8 +146,8 @@ public class FightManager : MonoBehaviour
 		if(weaponAnimator!=null)
 			weaponAnimator.SetTrigger ("Attack");
 
-		if(youHit!=null)
-			audioPlayer.PlayOneShotWithArguments (youHit, youHitTimes);
+		if (youHit != null)
+			audioSource.PlayOneShot (youHit);
 
 		if (hitsToKill <= 0) {
 			// you killed your opponent, won the whole battle
@@ -161,8 +164,8 @@ public class FightManager : MonoBehaviour
 		if(weaponAnimator!=null)
 			weaponAnimator.SetTrigger ("OpponentAttack");
 
-		if(opponentHit!=null)
-			audioPlayer.PlayOneShotWithArguments (opponentHit, opponentHitTimes);
+		if (opponentHit != null)
+			audioSource.PlayOneShot (opponentHit);
 
 		if (hitsToDie <= 0) {
 			// you died, lost whole battle

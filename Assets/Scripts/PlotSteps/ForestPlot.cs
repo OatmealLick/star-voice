@@ -227,7 +227,6 @@ public class ForestPlot : MonoBehaviour {
 		fightManager.opponent = Instantiate (bear);
 		fightManager.weapon = Instantiate (wood);
 		fightManager.youHit = (AudioClip)Resources.Load ("Torch_attack");
-		fightManager.youHitTimes = 2;
 		fightManager.opponentHit = (AudioClip)Resources.Load ("Bear_attack");
     }
     
