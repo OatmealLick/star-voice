@@ -14,10 +14,12 @@ public class PlotPiece {
 
 	public bool keepOldBackground = true;
 
+	public GameObject fightManager;
+
 	// AudioClips respectively to AudioSources in PlotHandler
 	public AudioClip backgroundClip;
 	public bool keepOldBackgroundClip = true;
-	public float bacgroundClipVolume = 1f;
+	public float backgroundClipVolume = 1f;
 
 	public AudioClip eventClip;
 	public float eventClipDelay = 0f;
@@ -35,8 +37,16 @@ public class PlotPiece {
 		this.texts = texts;
 	}
 
+	public PlotPiece (GameObject fightManager) {
+		this.fightManager = fightManager;
+	}
+
 	public bool isChoice() {
-		return texts.Length > 1;
+		return texts!=null && texts.Length > 1;
+	}
+
+	public bool isFight() {
+		return fightManager != null;
 	}
 		
 }

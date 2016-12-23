@@ -43,7 +43,6 @@ public class Act1Plot : MonoBehaviour
 	}
 
 	void LookAround() {
-		Debug.Log ("got it");
 		PlotPiece p1 = new PlotPiece ("After a few moments of staring into the darkness, you see a tiny spark of light in the distance, almost invisible behind the wall of trees.");
 		plotHandler.Add (p1);
 
@@ -157,18 +156,27 @@ public class Act1Plot : MonoBehaviour
 		FightManager.WonBattle += WonWithBear;
 		FightManager.LostBattle += LostWithBear;
 
+		//TODO think of something better, maybe split FightManager
+		// to two classes, one handling MonoBehaviour timethings
+		// and the other one containing data and counting points
 		GameObject system = Instantiate(fightSystem);
-		system.transform.SetAsFirstSibling();
 		FightManager fightManager = system.GetComponent<FightManager>();
 		fightManager.hitsToKill = 5;
 		fightManager.hitsToDie = 2;
 		fightManager.delay = 1;
 		fightManager.offsetBetweenSingleFights = 1.3f;
-		fightManager.attackSpeedInSeconds = 1.8f;
-		fightManager.opponent = Instantiate (bear);
+		fightManager.attackSpeedInSeconds = 3.8f;
 		fightManager.weapon = Instantiate (wood);
 		fightManager.youHit = (AudioClip)Resources.Load ("Torch_attack");
 		fightManager.opponentHit = (AudioClip)Resources.Load ("Bear_attack");
+
+		PlotPiece p1 = new PlotPiece (system);
+
+		// Watch out! This is where enemy/opponent/background goes!
+		// not as a part of fightManager
+		p1.keepOldBackground = false;
+		p1.background = bear;
+		plotHandler.Add (p1);
 	}
 
 	public void WonWithBear() {
@@ -184,12 +192,6 @@ public class Act1Plot : MonoBehaviour
 		FightManager.LostBattle -= LostWithBear;
 		Invoke ("BearFight", 3f);
 	}
-
-	
-//	// Update is called once per frame
-//	void Update ()
-//	{
-//	
-//	}
+		
 }
 
