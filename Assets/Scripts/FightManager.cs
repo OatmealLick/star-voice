@@ -50,6 +50,8 @@ public class FightManager : MonoBehaviour
 	public AudioClip youHit;
 	public AudioClip opponentHit;
 
+	public PlotHandler plotHandler;
+
 
 	// these below are used to pass info about winner back to calling Plot with 
 
@@ -84,13 +86,13 @@ public class FightManager : MonoBehaviour
 		else
 			Invoke ("EnableFighting", delay);
 
-
+		plotHandler = GameObject.Find ("PlotMachine").GetComponent<PlotHandler> ();
 
 		// properly attach opponent and weapon GameObjects to correct Canvas
 		// this double Canvas technic avoids UI being overlapped by background images
 		Transform renderCanvasTr = GameObject.Find ("SecondCanvas").transform;
-		if(opponent!= null)
-			opponent.transform.SetParent (renderCanvasTr, false);
+//		if(opponent!= null)
+//			opponent.transform.SetParent (renderCanvasTr, false);
 		if (weapon != null) {
 			weapon.transform.SetParent (renderCanvasTr, false);
 
@@ -180,6 +182,7 @@ public class FightManager : MonoBehaviour
 		Destroy (weapon);
 		StopCoroutine (co);
 		WonBattle ();
+		plotHandler.isDisplaying = false;
 		Destroy (gameObject);
 	}
 
@@ -190,6 +193,7 @@ public class FightManager : MonoBehaviour
 		GameObject endInstance = (GameObject)Instantiate(endPrefab);
 		endInstance.transform.SetAsFirstSibling();
 		endInstance.transform.SetParent(GameObject.Find("SecondCanvas").transform, false);
+		endInstance.AddComponent <TheEndLostBattleSelfDestruct> ();
 		endInstance.name = "TheEnd";
 
 		// TODO smart fix to destroy end screens automatically

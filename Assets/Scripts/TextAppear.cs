@@ -14,10 +14,10 @@ public class TextAppear : MonoBehaviour {
 	// TIME_TO_STAY
 	// amount of time the text persists after being wholly displayed
 	// matched 1:1 in seconds
-	public const float SINGLE_CHAR_OFFSET_HIGH = 0.056f;
-	public const float SINGLE_CHAR_OFFSET_NORMAL = 0.08f;
+	public const float SINGLE_CHAR_OFFSET_HIGH = 0.04f;
+	public const float SINGLE_CHAR_OFFSET_NORMAL = 0.07f;
 	public const float SINGLE_CHAR_OFFSET_LOW = 0.1f;
-	public const float TIME_TO_STAY_HIGH = 1.8f;
+	public const float TIME_TO_STAY_HIGH = 1.3f;
 	public const float TIME_TO_STAY_NORMAL = 2.5f;
 	public const float TIME_TO_STAY_LOW = 2.6f;
 

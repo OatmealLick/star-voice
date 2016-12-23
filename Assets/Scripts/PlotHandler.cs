@@ -28,7 +28,8 @@ public class PlotHandler : MonoBehaviour
 
 	// for background soundtrack
 	// for every PlayOneShot event, e.g. someone speaks or screams
-	public AudioSource audioSource;
+	public AudioSource musicSource;
+	public AudioSource eventSource;
 	private AudioClip eventClip;
 	private AudioClip spareClip;
 	private float eventClipVolume;
@@ -90,15 +91,25 @@ public class PlotHandler : MonoBehaviour
 			if (pp.isChoice ()) {
 				
 				// This is where each choice PlotPiece is handled
-				GameObject instantiatedChoice = Instantiate(choices);
+				GameObject instantiatedChoice = Instantiate (choices);
 				instantiatedChoice.transform.SetParent (renderCanvasTr, false);
-				ChoicesBehaviour cb = instantiatedChoice.GetComponent<ChoicesBehaviour>();
+				ChoicesBehaviour cb = instantiatedChoice.GetComponent<ChoicesBehaviour> ();
 				cb.choiceTexts = pp.texts;
 				cb.SetChoiceCallbacks (choiceCallbacks);
 
-
-
 				//instantiatedChoice.transform.SetParent(renderCanvas.transform, false);
+			} else if (pp.isFight ()) {
+				//GameObject fightSystem = new GameObject ();
+				//FightManager fightManager = fightSystem.AddComponent<FightManager> ();
+				pp.fightManager.SetActive(true);
+//				fightManager.attackSpeedInSeconds = pp.fightManager.attackSpeedInSeconds;
+//				fightManager.delay = pp.fightManager.delay;
+//				fightManager.endPrefab = pp.fightManager.endPrefab;
+//				fightManager.hitsToDie = pp.fightManager.hitsToDie;
+
+
+
+
 			} else {
 
 				// This is where each nonchoice PlotPiece is handled
@@ -141,17 +152,20 @@ public class PlotHandler : MonoBehaviour
 			}
 
 			// audio handling
-			if (!pp.keepOldBackgroundClip && audioSource.isPlaying)
-				audioSource.Stop ();
-
-			if (pp.backgroundClip != null) {
-				audioSource.clip = pp.backgroundClip;
-				audioSource.volume = pp.bacgroundClipVolume;
-				audioSource.Play ();
+			if (!pp.keepOldBackgroundClip && musicSource.isPlaying && pp.backgroundClip != null) {
+				StartCoroutine (AudioFadeOut.FadeOut (musicSource, 1f, pp.backgroundClip, pp.backgroundClipVolume));
+			} else if (!pp.keepOldBackgroundClip && musicSource.isPlaying) {
+				StartCoroutine (AudioFadeOut.FadeOut (musicSource, 1f, null, 0f));
+				//musicSource.Stop ();
+			} else if (pp.backgroundClip != null) {
+				// means first launch
+				musicSource.clip = pp.backgroundClip;
+				musicSource.volume = pp.backgroundClipVolume;
+				musicSource.Play ();
 			}
 
 			if (pp.eventClip != null && Mathf.Abs (pp.eventClipDelay) < .0001f) {
-				audioSource.PlayOneShot (pp.eventClip);
+				eventSource.PlayOneShot (pp.eventClip);
 			} else if (pp.eventClip != null) {
 				eventClip = pp.eventClip;
 				eventClipVolume = pp.eventClipVolume;
@@ -159,7 +173,7 @@ public class PlotHandler : MonoBehaviour
 			}
 
 			if (pp.spareClip != null && Mathf.Abs (pp.spareClipDelay) < .0001f) {
-				audioSource.PlayOneShot (pp.spareClip);
+				eventSource.PlayOneShot (pp.spareClip);
 			} else if (pp.spareClip != null) {
 				spareClip = pp.spareClip;
 				spareClipVolume = pp.spareClipVolume;
@@ -192,11 +206,11 @@ public class PlotHandler : MonoBehaviour
 	}
 
 	private void PlayOneShotDelayedEvent() {
-		audioSource.PlayOneShot (eventClip, eventClipVolume);
+		musicSource.PlayOneShot (eventClip, eventClipVolume);
 	}
 
 	private void PlayOneShotDelayedSpare() {
-		audioSource.PlayOneShot (spareClip, spareClipVolume);
+		musicSource.PlayOneShot (spareClip, spareClipVolume);
 	}
 }
 
