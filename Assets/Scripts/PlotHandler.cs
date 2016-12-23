@@ -154,6 +154,7 @@ public class PlotHandler : MonoBehaviour
 			// audio handling
 			if (!pp.keepOldBackgroundClip && musicSource.isPlaying && pp.backgroundClip != null) {
 				StartCoroutine (AudioFadeOut.FadeOut (musicSource, 1f, pp.backgroundClip, pp.backgroundClipVolume));
+
 			} else if (!pp.keepOldBackgroundClip && musicSource.isPlaying) {
 				StartCoroutine (AudioFadeOut.FadeOut (musicSource, 1f, null, 0f));
 				//musicSource.Stop ();
@@ -162,6 +163,7 @@ public class PlotHandler : MonoBehaviour
 				musicSource.clip = pp.backgroundClip;
 				musicSource.volume = pp.backgroundClipVolume;
 				musicSource.Play ();
+
 			}
 
 			if (pp.eventClip != null && Mathf.Abs (pp.eventClipDelay) < .0001f) {
